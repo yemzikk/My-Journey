@@ -1,9 +1,5 @@
 package com.ziyadkuttiady.coviddiary;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.NestedScrollView;
-
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
@@ -14,14 +10,17 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Calendar;
 
 public class AddVisitActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText editTextDate,editTextStTime,editTextEndTime,editTextPlace,editTextPurpose,editTextDesc;
+    EditText editTextStartDate, editTextEndDate, editTextStartTime, editTextEndTime, editTextStartPlace, editTextEndPlace, editTextPurpose, editTextDesc, editTextVehicleNumber, editTextVehicleCategory;
     Button buttonAdd;
     DataBaseHelper myDbHelper;
     NestedScrollView parentLayout;
@@ -31,51 +30,84 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_visit);
 
-        myDbHelper = new DataBaseHelper( this);
+        myDbHelper = new DataBaseHelper(this);
 
-        editTextDate =findViewById(R.id.editTextDate);
-        editTextStTime =findViewById(R.id.editTextStartTime);
-        editTextEndTime =findViewById(R.id.editTextEndTime);
-        editTextPlace =findViewById(R.id.editTextPlace);
-        editTextPurpose =findViewById(R.id.editTextPurpose);
-        editTextDesc =findViewById(R.id.editTextDesc);
+        editTextStartDate = findViewById(R.id.editTextStartingPointDate);
+        editTextEndDate = findViewById(R.id.editTextDestinationDate);
+        editTextStartTime = findViewById(R.id.editTextStartingPointTime);
+        editTextEndTime = findViewById(R.id.editTextDestinationTime);
+        editTextStartPlace = findViewById(R.id.editTextStartingPointPlace);
+        editTextEndPlace = findViewById(R.id.editTextDestinationPlace);
+        editTextPurpose = findViewById(R.id.editTextPurpose);
+        editTextDesc = findViewById(R.id.editTextDesc);
+        editTextVehicleNumber = findViewById(R.id.editTextVehicleNo);
+        editTextVehicleCategory = findViewById(R.id.editTextVehicleCategory);
 
         parentLayout = findViewById(R.id.parent);
 
-        editTextDate.setOnClickListener(AddVisitActivity.this);
-        editTextStTime.setOnClickListener(AddVisitActivity.this);
+        editTextStartDate.setOnClickListener(AddVisitActivity.this);
+        editTextEndDate.setOnClickListener(AddVisitActivity.this);
+        editTextStartTime.setOnClickListener(AddVisitActivity.this);
         editTextEndTime.setOnClickListener(AddVisitActivity.this);
 
 
-        buttonAdd = findViewById(R.id.buttonAddVisit);
+        buttonAdd = findViewById(R.id.buttonAddHistory);
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String v_date = editTextDate.getText().toString() ;
-                String st_time = editTextStTime.getText().toString();
+                String start_date = editTextStartDate.getText().toString();
+                String end_date = editTextEndDate.getText().toString();
+                String start_time = editTextStartTime.getText().toString();
                 String end_time = editTextEndTime.getText().toString();
-                String place = editTextPlace.getText().toString();
+                String start_place = editTextStartPlace.getText().toString();
+                String end_place = editTextEndPlace.getText().toString();
                 String purpose = editTextPurpose.getText().toString();
                 String desc = editTextDesc.getText().toString();
+                String category_vehicle = editTextVehicleCategory.getText().toString();
+                String vehicle_number = editTextVehicleNumber.getText().toString();
 
-                if(v_date.equals("")||st_time.equals("")||end_time.equals("")||place.equals("")||purpose.equals("")||desc.equals("")){
-                    Snackbar.make(parentLayout,"Fill all Fields",Snackbar.LENGTH_LONG).show();
-                }else{
-                    boolean isInserted = myDbHelper.insertData(editTextDate.getText().toString(),
-                            editTextStTime.getText().toString(),
-                            editTextEndTime.getText().toString(),
-                            editTextPlace.getText().toString(),
-                            editTextPurpose.getText().toString(),
-                            editTextDesc.getText().toString());
-                    if (isInserted){
-                        Snackbar.make(parentLayout,"Data Inserted",Snackbar.LENGTH_LONG).show();
+                if (start_date.equals("")){
+                    editTextStartDate.setError("Enter a valid date here");
+                }else if (end_date.equals("")){
+                    editTextEndDate.setError("Enter a valid date here");
+                }else if (start_time.equals("")){
+                    editTextStartTime.setError("Enter a valid time here");
+                }else if (end_time.equals("")){
+                    editTextEndTime.setError("Enter a valid time here");
+                }else if (start_place.equals("")){
+                    editTextStartPlace.setError("Enter a valid place here");
+                }else if (end_place.equals("")){
+                    editTextEndPlace.setError("Enter a valid place here");
+                }else if (purpose.equals("")){
+                    editTextPurpose.setError("Enter a valid purpose here");
+                }else if (desc.equals("")){
+                    editTextDesc.setError("Enter a valid description here");
+                }else if (category_vehicle.equals("")){
+                    editTextVehicleCategory.setError("Enter a valid vehicle category here");
+                }else if (vehicle_number.equals("")){
+                    editTextVehicleNumber.setError("Enter a valid vehicle registration number here");
+                }else {
+                    boolean isInserted = myDbHelper.insertData(
+                            start_date,
+                            end_date,
+                            start_time,
+                            end_time,
+                            start_place,
+                            end_place,
+                            purpose,
+                            desc,
+                            vehicle_number,
+                            category_vehicle,
+                            vehicle_number
+                    );
+                    if (isInserted) {
+                        Snackbar.make(parentLayout, "Data Inserted", Snackbar.LENGTH_LONG).show();
 //                    viewAll();
-                        startActivity(new Intent(AddVisitActivity.this,MainActivity.class));
-                    //TODO: Add More or goto main screen
-                    }
-                    else{
-                        Snackbar.make(parentLayout,"Something Went Wrong",Snackbar.LENGTH_LONG).show();
+                        startActivity(new Intent(AddVisitActivity.this, HomeScreenActivity.class));
+                        //TODO: Add More or goto main screen
+                    } else {
+                        Snackbar.make(parentLayout, "Something Went Wrong", Snackbar.LENGTH_LONG).show();
                     }
                 }
 
@@ -84,34 +116,35 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
 
 
     }
-    public void viewAll(){
 
-                Cursor cursor = myDbHelper.getAllData();
+    public void viewAll() {
 
-                //small test
-                if (cursor.getCount()==0){
-                    showMessage( "Error","Nothing Found In DataBase" );
-                    return;
-                }
+        Cursor cursor = myDbHelper.getAllData();
 
-                StringBuffer buffer = new StringBuffer();
+        //small test
+        if (cursor.getCount() == 0) {
+            showMessage("Error", "Nothing Found In DataBase");
+            return;
+        }
 
-                while (cursor.moveToNext()){
+        StringBuffer buffer = new StringBuffer();
+
+        while (cursor.moveToNext()) {
 //                    buffer.append("__________________________"+"\n");
-                    buffer.append("ID: "+cursor.getString(0)+"\n");
-                    buffer.append("V_DATE: "+cursor.getString(1)+"\n");
-                    buffer.append("START_TIME: "+cursor.getString(2)+"\n");
-                    buffer.append("END_TIME: "+cursor.getString(3)+"\n");
-                    buffer.append("PLACE: "+cursor.getString(4)+"\n");
-                    buffer.append("PURPOSE: "+cursor.getString(5)+"\n");
-                    buffer.append("DESC: "+cursor.getString(6)+"\n\n");
-                }
-                showMessage("All Data",buffer.toString());
+            buffer.append("ID: " + cursor.getString(0) + "\n");
+            buffer.append("V_DATE: " + cursor.getString(1) + "\n");
+            buffer.append("START_TIME: " + cursor.getString(2) + "\n");
+            buffer.append("END_TIME: " + cursor.getString(3) + "\n");
+            buffer.append("PLACE: " + cursor.getString(4) + "\n");
+            buffer.append("PURPOSE: " + cursor.getString(5) + "\n");
+            buffer.append("DESC: " + cursor.getString(6) + "\n\n");
+        }
+        showMessage("All Data", buffer.toString());
 
-            }
+    }
 
-    public void showMessage(String title, String message){
-        AlertDialog.Builder builder = new AlertDialog.Builder( this );
+    public void showMessage(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.create();
         builder.setCancelable(true);
         builder.setTitle(title);
@@ -123,7 +156,7 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         int mYear, mMonth, mDay, mHourFrom, mMinuteFrom, mHourTo, mMinuteTo;
 
-        if (v == editTextDate) {
+        if (v == editTextStartDate) {
 
             // Get Current Date
             final Calendar c = Calendar.getInstance();
@@ -139,13 +172,35 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
 
-                            editTextDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                            editTextStartDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
 
                         }
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
         }
-        if (v == editTextStTime) {
+        if (v == editTextEndDate) {
+
+            // Get Current Date
+            final Calendar c = Calendar.getInstance();
+            mYear = c.get(Calendar.YEAR);
+            mMonth = c.get(Calendar.MONTH);
+            mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+                    new DatePickerDialog.OnDateSetListener() {
+
+                        @Override
+                        public void onDateSet(DatePicker view, int year,
+                                              int monthOfYear, int dayOfMonth) {
+
+                            editTextEndDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
+                        }
+                    }, mYear, mMonth, mDay);
+            datePickerDialog.show();
+        }
+        if (v == editTextStartTime) {
 
             // Get Current Time
             final Calendar cf = Calendar.getInstance();
@@ -160,7 +215,7 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
                         public void onTimeSet(TimePicker view, int hourOfDay,
                                               int minute) {
                             int hour = hourOfDay % 12;
-                            editTextStTime.setText(String.format("%02d:%02d %s", hour == 0 ? 12 : hour,
+                            editTextStartTime.setText(String.format("%02d:%02d %s", hour == 0 ? 12 : hour,
                                     minute, hourOfDay < 12 ? "AM" : "PM"));
                         }
                     }, mHourFrom, mMinuteFrom, false);

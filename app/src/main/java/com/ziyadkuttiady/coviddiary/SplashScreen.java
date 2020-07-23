@@ -17,7 +17,8 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        int SPLASH_SCREEN_TIMEOUT = 4000;
+//        int SPLASH_SCREEN_TIMEOUT = 4000;
+        int SPLASH_SCREEN_TIMEOUT = 40;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
