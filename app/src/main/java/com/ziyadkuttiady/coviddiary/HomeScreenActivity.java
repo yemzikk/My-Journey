@@ -4,15 +4,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import android.preference.PreferenceManager;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.preference.PreferenceManager;
-import android.view.View;
-import android.widget.ListView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -77,7 +77,6 @@ public class HomeScreenActivity extends AppCompatActivity {
             buffer.append("PURPOSE: " + cursor.getString(5) + "\n");
             buffer.append("DESC: " + cursor.getString(6) + "\n\n");
 
-//                historyArrayList.add(new CustomHistorySectionItem(cursor.getString(1)));
             if (lastAdded.equals(cursor.getString(2))){
                 historyArrayList.add(new CustomHistoryEntryItem(cursor.getString(5)+" - "+cursor.getString(6), cursor.getString(3)+" - "+cursor.getString(4)));
             }else{
@@ -92,8 +91,6 @@ public class HomeScreenActivity extends AppCompatActivity {
 
 
             }
-//            historyArrayList.add(new CustomHistorySectionItem(cursor.getString(1)));
-//            historyArrayList.add(new CustomHistoryEntryItem(cursor.getString(4)));
             adapter.notifyDataSetChanged();
             lastAdded = cursor.getString(1);
 
@@ -104,6 +101,13 @@ public class HomeScreenActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
         listView.setTextFilterEnabled(true);
         adapter.notifyDataSetChanged();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+            }
+        });
     }
 
 }
