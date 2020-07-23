@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="bottom"
+    tools:context=".PersonalDataCollectActivity">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_margin_16"
+        android:gravity="bottom"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_margin_16"
+            android:gravity="start"
+            android:text="@string/tell_us_about_yourself"
+            android:textColor="@color/colorTextHead"
+            android:textSize="@dimen/headline"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/name"
+            android:textColor="@color/colorPrimary" />
+
+        <EditText
+            android:id="@+id/editTextName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_margin_16"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/samuel_john"
+            android:inputType="text"
+            android:lines="1"
+            android:padding="@dimen/padding_12"
+            android:textColorHint="@color/colorGray" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/phone"
+            android:textColor="@color/colorPrimary" />
+
+        <EditText
+            android:id="@+id/editTextPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_margin_16"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/_91_9876543210"
+            android:inputType="text"
+            android:lines="1"
+            android:padding="@dimen/padding_12"
+            android:textColorHint="@color/colorGray" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/address"
+            android:textColor="@color/colorPrimary" />
+
+        <EditText
+            android:id="@+id/editTextAddress"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="@dimen/default_margin_16"
+            android:background="@drawable/edit_text_background"
+            android:gravity="start"
+            android:hint="@string/address_here"
+            android:inputType="text"
+            android:padding="@dimen/padding_12"
+            android:textColorHint="@color/colorGray" />
+
+        <Button
+            android:id="@+id/buttonContinue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="75dp"
+            android:background="@drawable/button_background"
+            android:text="@string/continue_text"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</LinearLayout>

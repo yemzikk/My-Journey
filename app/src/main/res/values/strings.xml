@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">Covid Diary</string>
+    <string name="date">Date</string>
+    <string name="date_hint">DD/MM/YYYY</string>
+    <string name="starting_time">Starting Time</string>
+    <string name="time_hint">12:00 AM</string>
+    <string name="end_time">End Time</string>
+    <string name="place_hint">Kozhikkode</string>
+    <string name="place">Place</string>
+    <string name="attend_an_event">Attend an event</string>
+    <string name="notes_here">Notes Here</string>
+    <string name="add_visit">Add Visit</string>
+    <string name="add_traveling">Add Traveling</string>
+    <string name="place_from">Place From</string>
+    <string name="place_to">Place To</string>
+    <string name="place_hint_2">Kochi</string>
+    <string name="purpose">Purpose</string>
+    <string name="private_radio">Private</string>
+    <string name="public_radio">Public</string>
+    <string name="vehicle_type">Vehicle Type</string>
+    <string name="kl_01_a_2020">KL-01-A-2020</string>
+    <string name="vehicle_registration_number">Vehicle Registration Number</string>
+    <string name="description">Description</string>
+    <string name="help">Help</string>
+    <string name="name">Name</string>
+    <string name="samuel_john">Samuel John</string>
+    <string name="phone">Phone</string>
+    <string name="_91_9876543210">+91 9876543210</string>
+    <string name="address">Address</string>
+    <string name="address_here">Address Here</string>
+    <string name="tell_us_about_yourself">Tell us about yourself</string>
+    <string name="continue_text">CONTINUE</string>
+    <string name="title_activity_home_screen">HomeScreenActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+</resources>

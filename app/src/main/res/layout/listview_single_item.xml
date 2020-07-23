@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/list_item_background"
+    android:padding="@dimen/default_padding_8"
+    android:layout_margin="@dimen/margin_8">
+
+    <TextView
+        android:id="@+id/tvItemTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/default_padding_16"
+        android:paddingEnd="@dimen/default_padding_16"
+        android:textColor="@color/colorTextHead"
+        android:textSize="16sp"
+        android:text="@string/place_hint" />
+
+    <TextView
+        android:id="@+id/tvItemDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/default_padding_16"
+        android:textSize="13sp"
+        android:paddingEnd="@dimen/default_padding_16"
+        android:paddingBottom="@dimen/default_padding_16"
+        android:text="04:00 PM-05:00 PM" />
+
+</LinearLayout>

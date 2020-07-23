@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorLightBack"
+    android:orientation="vertical"
+    tools:context=".AddTravelingActivity">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/default_margin_16"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_margin_16"
+            android:gravity="center"
+            android:text="@string/add_traveling"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/date"
+            android:textColor="@color/colorPrimary" />
+
+        <EditText
+            android:id="@+id/editTextDateTraveling"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_margin_16"
+            android:background="@drawable/edit_text_background"
+            android:drawableEnd="@drawable/ic_calendar"
+            android:hint="@string/date_hint"
+            android:inputType="date"
+            android:padding="@dimen/padding_12"
+            android:textColorHint="@color/colorGray" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_margin_16"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/margin_8"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/starting_time"
+                    android:textColor="@color/colorPrimary" />
+
+                <EditText
+                    android:id="@+id/editTextStartTimeTraveling"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:drawableEnd="@drawable/ic_clock"
+                    android:hint="@string/time_hint"
+                    android:inputType="time"
+                    android:padding="@dimen/padding_12"
+                    android:textColorHint="@color/colorGray" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_8"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/end_time"
+                    android:textColor="@color/colorPrimary" />
+
+                <EditText
+                    android:id="@+id/editTextEndTimeTraveling"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_background"
+                    android:drawableEnd="@drawable/ic_clock"
+                    android:hint="@string/time_hint"
+                    android:inputType="time"
+                    android:padding="@dimen/padding_12"
+                    android:textColorHint="@color/colorGray" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/place_from"
+            android:textColor="@color/colorPrimary" />
+
+        <EditText
+            android:id="@+id/editTextPlaceFromTraveling"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_margin_16"
+            android:background="@drawable/edit_text_background"
+            android:drawableEnd="@drawable/ic_map_pin"
+            android:hint="@string/place_hint"
+            android:inputType="text"
+            android:lines="1"
+            android:padding="@dimen/padding_12"
+            android:textColorHint="@color/colorGray" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/place_to"
+            android:textColor="@color/colorPrimary" />
+
+        <EditText
+            android:id="@+id/editTextPlaceToTraveling"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_margin_16"
+            android:background="@drawable/edit_text_background"
+            android:drawableEnd="@drawable/ic_map_pin"
+            android:hint="@string/place_hint_2"
+            android:inputType="text"
+            android:lines="1"
+            android:padding="@dimen/padding_12"
+            android:textColorHint="@color/colorGray" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/purpose"
+            android:textColor="@color/colorPrimary" />
+
+        <EditText
+            android:id="@+id/editTextPurposeTraveling"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_margin_16"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/attend_an_event"
+            android:inputType="text"
+            android:lines="1"
+            android:padding="@dimen/padding_12"
+            android:textColorHint="@color/colorGray" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/vehicle_type"
+            android:textColor="@color/colorPrimary" />
+
+        <RadioGroup
+            android:id="@+id/radioButtonGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_margin_16"
+            android:orientation="horizontal">
+
+
+            <RadioButton
+                android:id="@+id/radioButtonPrivate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/colorPrimary"
+                android:checked="true"
+                android:text="@string/private_radio"
+                android:textColor="@color/colorPrimary" />
+
+            <RadioButton
+                android:id="@+id/radioButtonPublic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:buttonTint="@color/colorPrimary"
+                android:text="@string/public_radio"
+                android:textColor="@color/colorPrimary" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/vehicle_registration_number"
+            android:textColor="@color/colorPrimary" />
+
+        <EditText
+            android:id="@+id/editTextVehicleNo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/default_margin_16"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/kl_01_a_2020"
+            android:inputType="textCapCharacters"
+            android:lines="1"
+            android:padding="@dimen/padding_12"
+            android:textColorHint="@color/colorGray" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/description"
+            android:textColor="@color/colorPrimary" />
+
+        <EditText
+            android:id="@+id/editTextDescTraveling"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="@dimen/default_margin_16"
+            android:background="@drawable/edit_text_background"
+            android:gravity="start"
+            android:hint="@string/notes_here"
+            android:inputType="text"
+            android:padding="@dimen/padding_12"
+            android:textColorHint="@color/colorGray" />
+
+        <Button
+            android:id="@+id/buttonAddTraveling"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_background"
+            android:text="@string/add_traveling"
+            android:textAllCaps="false"
+            android:textColor="@color/colorWhite"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.core.widget.NestedScrollView>

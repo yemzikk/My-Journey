@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_padding_8">8dp</dimen>
+    <dimen name="default_padding_16">16dp</dimen>
+    <dimen name="default_margin_16">16dp</dimen>
+    <dimen name="padding_12">12dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="default_margin_8">8dp</dimen>
+
+    <dimen name="headline">26sp</dimen>
+    <dimen name="title_bold">22sp</dimen>
+    <dimen name="sub_header">18sp</dimen>
+    <dimen name="body_bold">16sp</dimen>
+    <dimen name="body_regular">16sp</dimen>
+    <dimen name="caption">14sp</dimen>
+    <dimen name="button_all_caps">16sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+</resources>
