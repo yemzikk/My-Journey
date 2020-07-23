@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/parent"
     android:layout_width="match_parent"
@@ -7,317 +8,340 @@
     android:orientation="vertical"
     tools:context=".AddVisitActivity">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="@dimen/default_margin_16"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
-<!--                <TextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginBottom="@dimen/default_margin_16"-->
-<!--                    android:gravity="center"-->
-<!--                    android:text="@string/add_visit"-->
-<!--                    android:textColor="@color/colorPrimary"-->
-<!--                    android:textSize="@dimen/headline"-->
-<!--                    android:textStyle="bold" />-->
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/default_margin_16"
-            android:text="@string/starting_point"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/sub_header"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/place"
-            android:textColor="@color/colorPrimary" />
-
-        <EditText
-            android:id="@+id/editTextStartingPointPlace"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/default_margin_16"
-            android:background="@drawable/edit_text_background"
-            android:drawableEnd="@drawable/ic_map_pin"
-            android:hint="@string/place_hint"
-            android:inputType="text"
-            android:padding="@dimen/padding_12"
-            android:textColorHint="@color/colorGray" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/default_margin_16"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/default_margin_16"
+            android:orientation="vertical">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
+            <!--                <TextView-->
+            <!--                    android:layout_width="match_parent"-->
+            <!--                    android:layout_height="wrap_content"-->
+            <!--                    android:layout_marginBottom="@dimen/default_margin_16"-->
+            <!--                    android:gravity="center"-->
+            <!--                    android:text="@string/add_visit"-->
+            <!--                    android:textColor="@color/colorPrimary"-->
+            <!--                    android:textSize="@dimen/headline"-->
+            <!--                    android:textStyle="bold" />-->
+
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_8"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:layout_marginBottom="@dimen/default_margin_16"
+                android:fontFamily="@font/inter_bold"
+                android:text="@string/starting_point"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/sub_header"
+                android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/date"
-                    android:textColor="@color/colorPrimary" />
-
-                <EditText
-                    android:id="@+id/editTextStartingPointDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edit_text_background"
-                    android:clickable="true"
-                    android:drawableEnd="@drawable/ic_calendar"
-                    android:focusable="false"
-                    android:hint="@string/date_hint"
-                    android:inputType="date"
-                    android:padding="@dimen/padding_12"
-                    android:textColorHint="@color/colorGray" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_8"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/time"
-                    android:textColor="@color/colorPrimary" />
-
-                <EditText
-                    android:id="@+id/editTextStartingPointTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edit_text_background"
-                    android:clickable="true"
-                    android:drawableEnd="@drawable/ic_clock"
-                    android:focusable="false"
-                    android:hint="@string/time_hint"
-                    android:inputType="time"
-                    android:padding="@dimen/padding_12"
-                    android:textColorHint="@color/colorGray" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/default_margin_16"
-            android:text="@string/destination"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/sub_header"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/place"
-            android:textColor="@color/colorPrimary" />
-
-        <EditText
-            android:id="@+id/editTextDestinationPlace"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/default_margin_16"
-            android:background="@drawable/edit_text_background"
-            android:drawableEnd="@drawable/ic_map_pin"
-            android:hint="@string/place_hint"
-            android:inputType="text"
-            android:padding="@dimen/padding_12"
-            android:textColorHint="@color/colorGray" />
-
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/default_margin_16"
-            android:orientation="horizontal">
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/margin_8"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/date"
-                    android:textColor="@color/colorPrimary" />
-
-                <EditText
-                    android:id="@+id/editTextDestinationDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edit_text_background"
-                    android:clickable="true"
-                    android:drawableEnd="@drawable/ic_calendar"
-                    android:focusable="false"
-                    android:hint="@string/date_hint"
-                    android:inputType="date"
-                    android:padding="@dimen/padding_12"
-                    android:textColorHint="@color/colorGray" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/margin_8"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/time"
-                    android:textColor="@color/colorPrimary" />
-
-                <EditText
-                    android:id="@+id/editTextDestinationTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/edit_text_background"
-                    android:clickable="true"
-                    android:drawableEnd="@drawable/ic_clock"
-                    android:focusable="false"
-                    android:hint="@string/time_hint"
-                    android:inputType="time"
-                    android:padding="@dimen/padding_12"
-                    android:textColorHint="@color/colorGray" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/purpose"
-            android:textColor="@color/colorPrimary" />
-
-        <EditText
-            android:id="@+id/editTextPurpose"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/default_margin_16"
-            android:background="@drawable/edit_text_background"
-            android:hint="@string/attend_an_event"
-            android:inputType="text"
-            android:lines="1"
-            android:padding="@dimen/padding_12"
-            android:textColorHint="@color/colorGray" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/vehicle_type"
-            android:textColor="@color/colorPrimary" />
-
-        <RadioGroup
-            android:id="@+id/radioButtonGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/default_margin_16"
-            android:orientation="horizontal">
-
-
-            <RadioButton
-                android:id="@+id/radioButtonPrivate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:buttonTint="@color/colorPrimary"
-                android:checked="true"
-                android:text="@string/private_radio"
+                android:text="@string/place"
                 android:textColor="@color/colorPrimary" />
 
-            <RadioButton
-                android:id="@+id/radioButtonPublic"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/editTextStartingPointPlace"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:buttonTint="@color/colorPrimary"
-                android:text="@string/public_radio"
+                android:layout_marginBottom="@dimen/default_margin_16"
+                android:background="@drawable/edit_text_background"
+                android:drawableEnd="@drawable/ic_map_pin"
+                android:hint="@string/place_hint"
+                android:inputType="text"
+                android:padding="@dimen/padding_12"
+                android:textColorHint="@color/colorGray" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_margin_16"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/date"
+                        android:textColor="@color/colorPrimary" />
+
+                    <EditText
+                        android:id="@+id/editTextStartingPointDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_text_background"
+                        android:clickable="true"
+                        android:drawableEnd="@drawable/ic_calendar"
+                        android:focusable="false"
+                        android:hint="@string/date_hint"
+                        android:inputType="date"
+                        android:padding="@dimen/padding_12"
+                        android:textColorHint="@color/colorGray" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time"
+                        android:textColor="@color/colorPrimary" />
+
+                    <EditText
+                        android:id="@+id/editTextStartingPointTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_text_background"
+                        android:clickable="true"
+                        android:drawableEnd="@drawable/ic_clock"
+                        android:focusable="false"
+                        android:hint="@string/time_hint"
+                        android:inputType="time"
+                        android:padding="@dimen/padding_12"
+                        android:textColorHint="@color/colorGray" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_margin_16"
+                android:text="@string/destination"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/sub_header"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/place"
                 android:textColor="@color/colorPrimary" />
 
-        </RadioGroup>
+            <EditText
+                android:id="@+id/editTextDestinationPlace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_margin_16"
+                android:background="@drawable/edit_text_background"
+                android:drawableEnd="@drawable/ic_map_pin"
+                android:hint="@string/place_hint"
+                android:inputType="text"
+                android:padding="@dimen/padding_12"
+                android:textColorHint="@color/colorGray" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/vehicle_category"
-            android:textColor="@color/colorPrimary" />
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_margin_16"
+                android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/editTextVehicleCategory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/default_margin_16"
-            android:background="@drawable/edit_text_background"
-            android:hint="@string/bus"
-            android:inputType="text"
-            android:lines="1"
-            android:padding="@dimen/padding_12"
-            android:textColorHint="@color/colorGray" />
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/vehicle_registration_number"
-            android:textColor="@color/colorPrimary" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/date"
+                        android:textColor="@color/colorPrimary" />
 
-        <EditText
-            android:id="@+id/editTextVehicleNo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/default_margin_16"
-            android:background="@drawable/edit_text_background"
-            android:hint="@string/kl_01_a_2020"
-            android:inputType="textCapCharacters"
-            android:lines="1"
-            android:padding="@dimen/padding_12"
-            android:textColorHint="@color/colorGray" />
+                    <EditText
+                        android:id="@+id/editTextDestinationDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_text_background"
+                        android:clickable="true"
+                        android:drawableEnd="@drawable/ic_calendar"
+                        android:focusable="false"
+                        android:hint="@string/date_hint"
+                        android:inputType="date"
+                        android:padding="@dimen/padding_12"
+                        android:textColorHint="@color/colorGray" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/description"
-            android:textColor="@color/colorPrimary" />
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editTextDesc"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginBottom="@dimen/default_margin_16"
-            android:background="@drawable/edit_text_background"
-            android:gravity="start"
-            android:hint="@string/notes_here"
-            android:inputType="text"
-            android:padding="@dimen/padding_12"
-            android:textColorHint="@color/colorGray" />
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/time"
+                        android:textColor="@color/colorPrimary" />
 
-        <Button
-            android:id="@+id/buttonAddHistory"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_background"
-            android:text="@string/add_to_history"
-            android:textAllCaps="false"
-            android:textColor="@color/colorWhite"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
-</androidx.core.widget.NestedScrollView>
+                    <EditText
+                        android:id="@+id/editTextDestinationTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edit_text_background"
+                        android:clickable="true"
+                        android:drawableEnd="@drawable/ic_clock"
+                        android:focusable="false"
+                        android:hint="@string/time_hint"
+                        android:inputType="time"
+                        android:padding="@dimen/padding_12"
+                        android:textColorHint="@color/colorGray" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/purpose"
+                android:textColor="@color/colorPrimary" />
+
+            <EditText
+                android:id="@+id/editTextPurpose"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_margin_16"
+                android:background="@drawable/edit_text_background"
+                android:hint="@string/attend_an_event"
+                android:inputType="text"
+                android:lines="1"
+                android:padding="@dimen/padding_12"
+                android:textColorHint="@color/colorGray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/vehicle_type"
+                android:textColor="@color/colorPrimary" />
+
+            <RadioGroup
+                android:id="@+id/radioButtonGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_margin_16"
+                android:orientation="horizontal">
+
+
+                <RadioButton
+                    android:id="@+id/radioButtonPrivate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimary"
+                    android:checked="true"
+                    android:text="@string/private_radio"
+                    android:textColor="@color/colorPrimary" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonPublic"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/colorPrimary"
+                    android:text="@string/public_radio"
+                    android:textColor="@color/colorPrimary" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/vehicle_category"
+                android:textColor="@color/colorPrimary" />
+
+            <EditText
+                android:id="@+id/editTextVehicleCategory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_margin_16"
+                android:background="@drawable/edit_text_background"
+                android:hint="@string/bus"
+                android:inputType="text"
+                android:lines="1"
+                android:padding="@dimen/padding_12"
+                android:textColorHint="@color/colorGray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/vehicle_registration_number"
+                android:textColor="@color/colorPrimary" />
+
+            <EditText
+                android:id="@+id/editTextVehicleNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_margin_16"
+                android:background="@drawable/edit_text_background"
+                android:hint="@string/kl_01_a_2020"
+                android:inputType="textCapCharacters"
+                android:lines="1"
+                android:padding="@dimen/padding_12"
+                android:textColorHint="@color/colorGray" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/description"
+                android:textColor="@color/colorPrimary" />
+
+            <EditText
+                android:id="@+id/editTextDesc"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginBottom="@dimen/default_margin_16"
+                android:background="@drawable/edit_text_background"
+                android:gravity="start"
+                android:hint="@string/notes_here"
+                android:inputType="text"
+                android:padding="@dimen/padding_12"
+                android:textColorHint="@color/colorGray" />
+
+            <Button
+                android:id="@+id/buttonAddHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="@string/add_to_history"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

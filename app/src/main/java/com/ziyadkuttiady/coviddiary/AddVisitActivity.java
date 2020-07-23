@@ -9,11 +9,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TimePicker;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.widget.NestedScrollView;
+import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -23,12 +26,18 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
     EditText editTextStartDate, editTextEndDate, editTextStartTime, editTextEndTime, editTextStartPlace, editTextEndPlace, editTextPurpose, editTextDesc, editTextVehicleNumber, editTextVehicleCategory;
     Button buttonAdd;
     DataBaseHelper myDbHelper;
-    NestedScrollView parentLayout;
+    LinearLayoutCompat parentLayout;
+    RadioButton vehicle_typeRadioButton;
+    RadioGroup radioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_visit);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.add_visit);
+        setSupportActionBar(toolbar);
 
         myDbHelper = new DataBaseHelper(this);
 
@@ -50,12 +59,15 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
         editTextStartTime.setOnClickListener(AddVisitActivity.this);
         editTextEndTime.setOnClickListener(AddVisitActivity.this);
 
+        radioGroup = findViewById(R.id.radioButtonGroup);
 
         buttonAdd = findViewById(R.id.buttonAddHistory);
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                int selectedId = radioGroup.getCheckedRadioButtonId();
+                vehicle_typeRadioButton = findViewById(selectedId);
                 String start_date = editTextStartDate.getText().toString();
                 String end_date = editTextEndDate.getText().toString();
                 String start_time = editTextStartTime.getText().toString();
@@ -66,28 +78,32 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
                 String desc = editTextDesc.getText().toString();
                 String category_vehicle = editTextVehicleCategory.getText().toString();
                 String vehicle_number = editTextVehicleNumber.getText().toString();
+                String vehicle_type = vehicle_typeRadioButton.getText().toString();
 
-                if (start_date.equals("")){
-                    editTextStartDate.setError("Enter a valid date here");
-                }else if (end_date.equals("")){
-                    editTextEndDate.setError("Enter a valid date here");
-                }else if (start_time.equals("")){
-                    editTextStartTime.setError("Enter a valid time here");
-                }else if (end_time.equals("")){
-                    editTextEndTime.setError("Enter a valid time here");
-                }else if (start_place.equals("")){
+
+                if (start_place.equals("")) {
                     editTextStartPlace.setError("Enter a valid place here");
-                }else if (end_place.equals("")){
+                } else if (start_date.equals("")) {
+                    editTextStartDate.setError("Enter a valid date here");
+                } else if (start_time.equals("")) {
+                    editTextStartTime.setError("Enter a valid time here");
+                } else if (end_place.equals("")) {
                     editTextEndPlace.setError("Enter a valid place here");
-                }else if (purpose.equals("")){
+                } else if (end_date.equals("")) {
+                    editTextEndDate.setError("Enter a valid date here");
+                } else if (end_time.equals("")) {
+                    editTextEndTime.setError("Enter a valid time here");
+                } else if (vehicle_type.equals("")) {
+                    vehicle_typeRadioButton.setError("Enter a valid vehicle type here");
+                } else if (purpose.equals("")) {
                     editTextPurpose.setError("Enter a valid purpose here");
-                }else if (desc.equals("")){
-                    editTextDesc.setError("Enter a valid description here");
-                }else if (category_vehicle.equals("")){
+                } else if (category_vehicle.equals("")) {
                     editTextVehicleCategory.setError("Enter a valid vehicle category here");
-                }else if (vehicle_number.equals("")){
+                } else if (vehicle_number.equals("")) {
                     editTextVehicleNumber.setError("Enter a valid vehicle registration number here");
-                }else {
+                } else if (desc.equals("")) {
+                    editTextDesc.setError("Enter a valid description here");
+                } else {
                     boolean isInserted = myDbHelper.insertData(
                             start_date,
                             end_date,
@@ -97,7 +113,7 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
                             end_place,
                             purpose,
                             desc,
-                            vehicle_number,
+                            vehicle_type,
                             category_vehicle,
                             vehicle_number
                     );
@@ -165,7 +181,7 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
             mDay = c.get(Calendar.DAY_OF_MONTH);
 
 
-            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme,
                     new DatePickerDialog.OnDateSetListener() {
 
                         @Override
@@ -177,6 +193,7 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
                         }
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
+            datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
         }
         if (v == editTextEndDate) {
 
@@ -187,7 +204,7 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
             mDay = c.get(Calendar.DAY_OF_MONTH);
 
 
-            DatePickerDialog datePickerDialog = new DatePickerDialog(this,
+            DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme,
                     new DatePickerDialog.OnDateSetListener() {
 
                         @Override
@@ -199,6 +216,8 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
                         }
                     }, mYear, mMonth, mDay);
             datePickerDialog.show();
+            datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+
         }
         if (v == editTextStartTime) {
 
@@ -208,7 +227,7 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
             mMinuteFrom = cf.get(Calendar.MINUTE);
 
             // Launch Time Picker Dialog
-            TimePickerDialog timePickerDialogf = new TimePickerDialog(this,
+            TimePickerDialog timePickerDialogf = new TimePickerDialog(this, R.style.DialogTheme,
                     new TimePickerDialog.OnTimeSetListener() {
 
                         @Override
@@ -229,7 +248,7 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
             mMinuteTo = ct.get(Calendar.MINUTE);
 
             // Launch Time Picker Dialog
-            TimePickerDialog timePickerDialogt = new TimePickerDialog(this,
+            TimePickerDialog timePickerDialogt = new TimePickerDialog(this, R.style.DialogTheme,
                     new TimePickerDialog.OnTimeSetListener() {
 
                         @Override
@@ -244,4 +263,5 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
             timePickerDialogt.show();
         }
     }
+
 }
