@@ -14,6 +14,7 @@
             android:label="@string/title_activity_home_screen"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".PersonalDataCollectActivity" />
+        <activity android:name=".AddTravelingActivity" />
         <activity android:name=".AddVisitActivity" />
         <activity android:name=".OnBoardingActivity" />
         <activity android:name=".SplashScreen">
@@ -23,6 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

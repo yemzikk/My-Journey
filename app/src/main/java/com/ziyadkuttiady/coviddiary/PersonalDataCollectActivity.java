@@ -48,7 +48,7 @@ public class PersonalDataCollectActivity extends AppCompatActivity {
                     editor.putString("phone_number_of_user", phone_number_of_user);
                     editor.putString("address_of_user", address_of_user);
                     editor.apply();
-                    startActivity(new Intent(PersonalDataCollectActivity.this,HomeScreenActivity.class));
+                    startActivity(new Intent(PersonalDataCollectActivity.this,MainActivity.class));
                 }
 
             }

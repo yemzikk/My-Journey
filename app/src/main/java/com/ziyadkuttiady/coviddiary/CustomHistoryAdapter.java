@@ -52,8 +52,6 @@ public class CustomHistoryAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.listview_single_item, parent, false);
             TextView tvItemTitle = (TextView) convertView.findViewById(R.id.tvItemTitle);
             tvItemTitle.setText(((CustomHistoryEntryItem) item.get(position)).getTitle());
-            TextView tvItemSubTitle = (TextView) convertView.findViewById(R.id.tvItemDesc);
-            tvItemSubTitle.setText(((CustomHistoryEntryItem) item.get(position)).getTime());
         }
 
         return convertView;

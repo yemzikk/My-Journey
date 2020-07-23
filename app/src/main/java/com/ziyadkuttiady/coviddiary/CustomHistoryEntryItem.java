@@ -1,15 +1,10 @@
 package com.ziyadkuttiady.coviddiary;
 
 public class CustomHistoryEntryItem implements ItemHistory{
-    public final String title,time;
+    public final String title;
 
-    public CustomHistoryEntryItem(String title, String time) {
+    public CustomHistoryEntryItem(String title) {
         this.title = title;
-        this.time = time;
-    }
-
-    public String getTime() {
-        return time;
     }
 
     public String getTitle() {

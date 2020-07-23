@@ -41,8 +41,4 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="starting_point">Starting Point</string>
     <string name="destination">Destination</string>
-    <string name="add_to_history">Add to History</string>
-    <string name="time">Time</string>
-    <string name="vehicle_category">Vehicle Category</string>
-    <string name="bus">Bus</string>
 </resources>

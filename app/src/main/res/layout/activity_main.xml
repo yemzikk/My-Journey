@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="@dimen/default_margin_16"
+            android:text="Good Morning, Ziyad"
+            android:textColor="@color/colorTextHead"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="@dimen/default_margin_16"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/add_visit"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="@dimen/default_margin_8"
+                android:background="@drawable/ic_rectangle_17"
+                android:text="@string/add_visit" />
+
+            <Button
+                android:id="@+id/add_travel"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="@dimen/default_margin_8"
+                android:background="@drawable/ic_rectangle_17"
+                android:text="@string/add_traveling" />
+
+            <Button
+                android:id="@+id/help"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="@dimen/default_margin_8"
+                android:background="@drawable/ic_rectangle_17"
+                android:text="@string/help" />
+        </LinearLayout>
+    </LinearLayout>
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+            <ListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:divider="@android:color/transparent"
+                android:layout_height="wrap_content"/>
+<!--        </LinearLayout>-->
+<!--    </androidx.core.widget.NestedScrollView>-->
+</LinearLayout>
