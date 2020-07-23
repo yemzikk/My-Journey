@@ -25,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        add_travel = findViewById(R.id.add_travel);
-        add_visit = findViewById(R.id.add_visit);
-        help = findViewById(R.id.help);
+//        add_travel = findViewById(R.id.add_travel);
+//        add_visit = findViewById(R.id.add_visit);
+//        help = findViewById(R.id.help);
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         String name = sharedPreferences.getString("name_of_user", "no");
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         }
         myDbHelper = new DataBaseHelper(this);
 
-        listView = findViewById(R.id.listView);
+//        listView = findViewById(R.id.listView);
 
         add_visit.setOnClickListener(new View.OnClickListener() {
             @Override

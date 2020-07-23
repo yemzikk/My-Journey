@@ -1,33 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="@dimen/default_margin_16"
+            android:text="Good Morning, Ziyad"
+            android:textColor="@color/colorTextHead"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="@dimen/default_margin_16"
+            android:gravity="center"
+            android:orientation="horizontal">
 
-    <include layout="@layout/content_main2" />
+            <Button
+                android:id="@+id/add_visit"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="@dimen/default_margin_8"
+                android:background="@drawable/ic_rectangle_17"
+                android:text="@string/add_visit" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+            <Button
+                android:id="@+id/add_travel"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="@dimen/default_margin_8"
+                android:background="@drawable/ic_rectangle_17"
+                android:text="@string/add_traveling" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <Button
+                android:id="@+id/help"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_margin="@dimen/default_margin_8"
+                android:background="@drawable/ic_rectangle_17"
+                android:text="@string/help" />
+        </LinearLayout>
+    </LinearLayout>
+<!--    <androidx.core.widget.NestedScrollView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+            <ListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:divider="@android:color/transparent"
+                android:layout_height="wrap_content"/>
+<!--        </LinearLayout>-->
+<!--    </androidx.core.widget.NestedScrollView>-->
+</LinearLayout>
