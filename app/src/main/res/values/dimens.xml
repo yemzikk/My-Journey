@@ -7,13 +7,17 @@
     <dimen name="margin_8">8dp</dimen>
     <dimen name="default_margin_8">8dp</dimen>
 
-    <dimen name="headline">26sp</dimen>
-    <dimen name="title_bold">22sp</dimen>
-    <dimen name="sub_header">18sp</dimen>
-    <dimen name="body_bold">16sp</dimen>
-    <dimen name="body_regular">16sp</dimen>
+    <dimen name="headline">24sp</dimen>
+    <dimen name="title">20sp</dimen>
+    <dimen name="sub_header">16sp</dimen>
+    <dimen name="body_large">14sp</dimen>
+    <dimen name="body_regular">12sp</dimen>
+
     <dimen name="caption">14sp</dimen>
     <dimen name="button_all_caps">16sp</dimen>
+
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="border_radius">2dp</dimen>
 
 </resources>
