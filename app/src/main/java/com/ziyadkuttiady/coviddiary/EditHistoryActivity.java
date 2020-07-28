@@ -3,6 +3,7 @@ package com.ziyadkuttiady.coviddiary;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,7 +21,9 @@ import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Calendar;
 
-public class AddVisitActivity extends AppCompatActivity implements View.OnClickListener {
+import static com.ziyadkuttiady.coviddiary.HomeScreenActivity.id;
+
+public class EditHistoryActivity extends AppCompatActivity implements View.OnClickListener {
     EditText editTextStartDate, editTextEndDate, editTextStartTime, editTextEndTime, editTextStartPlace, editTextEndPlace, editTextPurpose, editTextDesc, editTextVehicleNumber, editTextVehicleCategory;
     Button buttonAdd;
     DataBaseHelper myDbHelper;
@@ -31,8 +34,7 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_visit);
-
+        setContentView(R.layout.activity_edit_history);
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.add_visit);
         setSupportActionBar(toolbar);
@@ -53,14 +55,60 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
 
         parentLayout = findViewById(R.id.parent);
 
-        editTextStartDate.setOnClickListener(AddVisitActivity.this);
-        editTextEndDate.setOnClickListener(AddVisitActivity.this);
-        editTextStartTime.setOnClickListener(AddVisitActivity.this);
-        editTextEndTime.setOnClickListener(AddVisitActivity.this);
+        editTextStartDate.setOnClickListener(EditHistoryActivity.this);
+        editTextEndDate.setOnClickListener(EditHistoryActivity.this);
+        editTextStartTime.setOnClickListener(EditHistoryActivity.this);
+        editTextEndTime.setOnClickListener(EditHistoryActivity.this);
 
         radioGroup = findViewById(R.id.radioButtonGroup);
 
         buttonAdd = findViewById(R.id.buttonAddHistory);
+
+        myDbHelper = new DataBaseHelper(this);
+
+
+        Cursor cursor = myDbHelper.getData(id);
+        ;
+
+        if (cursor.moveToNext()) {
+            //StartingPointPlace
+            editTextStartPlace.setText(cursor.getString(5));
+
+            //editTextStartingPointDate
+            editTextStartDate.setText(cursor.getString(1));
+
+            //StartingPointTime
+            editTextStartTime.setText(cursor.getString(3));
+
+            //DestinationPlace
+            editTextEndPlace.setText(cursor.getString(6));
+
+            //DestinationDate
+            editTextEndDate.setText(cursor.getString(2));
+
+            //DestinationTime
+            editTextEndTime.setText(cursor.getString(4));
+
+            //Purpose
+            editTextPurpose.setText(cursor.getString(7));
+
+            //VehicleType
+            RadioButton public_radio = findViewById(R.id.radioButtonPublic);
+            if (cursor.getString(9).equals("Public")) {
+                public_radio.setChecked(true);
+
+            }
+
+
+            //VehicleCategory
+            editTextVehicleCategory.setText(cursor.getString(10));
+
+            //VehicleNo
+            editTextVehicleNumber.setText(cursor.getString(11));
+
+            //StartingPointPlace
+            editTextDesc.setText(cursor.getString(8));
+        }
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +151,8 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
                 } else if (desc.equals("")) {
                     editTextDesc.setError("Enter a valid description here");
                 } else {
-                    boolean isInserted = myDbHelper.insertData(
+                    boolean updateData = myDbHelper.updateData(
+                            id,
                             start_date,
                             end_date,
                             start_time,
@@ -116,9 +165,9 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
                             category_vehicle,
                             vehicle_number
                     );
-                    if (isInserted) {
-                        Snackbar.make(parentLayout, "Data Inserted", Snackbar.LENGTH_LONG).show();
-                        startActivity(new Intent(AddVisitActivity.this, HomeScreenActivity.class));
+                    if (updateData) {
+                        Snackbar.make(parentLayout, "Data Updated", Snackbar.LENGTH_LONG).show();
+                        startActivity(new Intent(EditHistoryActivity.this, HomeScreenActivity.class));
                         finish();
                         //TODO: Add More or goto main screen
                     } else {
@@ -231,8 +280,13 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(AddVisitActivity.this, HomeScreenActivity.class));
+        startActivity(new Intent(EditHistoryActivity.this, HomeScreenActivity.class));
         finish();
         super.onBackPressed();
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }

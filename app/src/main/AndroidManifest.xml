@@ -9,10 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".EditHistoryActivity"></activity>
         <activity
             android:name=".HomeScreenActivity"
             android:label="@string/title_activity_home_screen"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".PersonalDataCollectActivity" />
         <activity android:name=".AddVisitActivity" />
         <activity android:name=".OnBoardingActivity" />

@@ -12,6 +12,7 @@
         android:text="Section"
         android:paddingTop="@dimen/default_padding_8"
         android:textSize="@dimen/body_bold"
+        android:clickable="false"
         android:textColor="@color/colorTextHeadLight"
         android:textStyle="bold" />
 

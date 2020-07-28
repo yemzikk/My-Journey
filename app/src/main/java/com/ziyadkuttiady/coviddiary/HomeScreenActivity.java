@@ -1,5 +1,6 @@
 package com.ziyadkuttiady.coviddiary;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -8,6 +9,7 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -18,10 +20,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class HomeScreenActivity extends AppCompatActivity {
+public class HomeScreenActivity extends AppCompatActivity implements CustomBottomSheet.BottomSheetListener {
     ListView listView;
     DataBaseHelper myDbHelper;
-    ArrayList<ItemHistory> historyArrayList = new ArrayList<>();
+    public static ArrayList<ItemHistory> historyArrayList = new ArrayList<>();
+    public static int position;
+    public static String id;
 
 
     @Override
@@ -36,7 +40,8 @@ public class HomeScreenActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeScreenActivity.this,AddVisitActivity.class));
+                startActivity(new Intent(HomeScreenActivity.this, AddVisitActivity.class));
+                finish();
             }
         });
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(HomeScreenActivity.this);
@@ -61,36 +66,34 @@ public class HomeScreenActivity extends AppCompatActivity {
             return;
         }
 
-        StringBuffer buffer = new StringBuffer();
-        String today = new SimpleDateFormat("dd-M-yyyy").format(new Date());
+        @SuppressLint("SimpleDateFormat") String today = new SimpleDateFormat("dd-M-yyyy").format(new Date());
 
         final CustomHistoryAdapter adapter = new CustomHistoryAdapter(this, historyArrayList);
+        listView.setAdapter(adapter);
+
+        historyArrayList.clear();
+        adapter.notifyDataSetChanged();
+        listView.invalidateViews();
+        listView.refreshDrawableState();
 
         String lastAdded = "";
         while (cursor.moveToNext()) {
-//                    buffer.append("__________________________"+"\n");
-            buffer.append("ID: " + cursor.getString(0) + "\n");
-            buffer.append("V_DATE: " + cursor.getString(1) + "\n");
-            buffer.append("START_TIME: " + cursor.getString(2) + "\n");
-            buffer.append("END_TIME: " + cursor.getString(3) + "\n");
-            buffer.append("PLACE: " + cursor.getString(4) + "\n");
-            buffer.append("PURPOSE: " + cursor.getString(5) + "\n");
-            buffer.append("DESC: " + cursor.getString(6) + "\n\n");
 
-            if (lastAdded.equals(cursor.getString(2))){
-                historyArrayList.add(new CustomHistoryEntryItem(cursor.getString(5)+" - "+cursor.getString(6), cursor.getString(3)+" - "+cursor.getString(4)));
-            }else{
-                if (cursor.getString(1).equals(today)){
-                    historyArrayList.add(new CustomHistorySectionItem("Today's Activity"));
-                    historyArrayList.add(new CustomHistoryEntryItem(cursor.getString(5)+" - "+cursor.getString(6), cursor.getString(3)+" - "+cursor.getString(4)));
-                }else{
-                    historyArrayList.add(new CustomHistorySectionItem(cursor.getString(2)));
-                    historyArrayList.add(new CustomHistoryEntryItem(cursor.getString(5)+" - "+cursor.getString(6), cursor.getString(3)+" - "+cursor.getString(4)));
+            if (lastAdded.equals(cursor.getString(2))) {
+                historyArrayList.add(new CustomHistoryEntryItem(cursor.getString(5) + " -> " + cursor.getString(6), cursor.getString(3) + " - " + cursor.getString(4), cursor.getString(0)));
+            } else {
+                if (cursor.getString(1).equals(today)) {
+                    historyArrayList.add(new CustomHistorySectionItem("Today's Activity", cursor.getString(0)));
+                    historyArrayList.add(new CustomHistoryEntryItem(cursor.getString(5) + " - " + cursor.getString(6), cursor.getString(3) + " - " + cursor.getString(4), cursor.getString(0)));
+                } else {
+                    historyArrayList.add(new CustomHistorySectionItem(cursor.getString(2), cursor.getString(0)));
+                    historyArrayList.add(new CustomHistoryEntryItem(cursor.getString(5) + " - " + cursor.getString(6), cursor.getString(3) + " - " + cursor.getString(4), cursor.getString(0)));
 
                 }
 
 
             }
+
             adapter.notifyDataSetChanged();
             lastAdded = cursor.getString(1);
 
@@ -98,16 +101,35 @@ public class HomeScreenActivity extends AppCompatActivity {
         }
 
         // set adapter
-        listView.setAdapter(adapter);
         listView.setTextFilterEnabled(true);
         adapter.notifyDataSetChanged();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                TextView textView = view.findViewById(R.id.tvItemTitle);
+//                String charSequence = (textView).getText().toString();
+                if (!historyArrayList.get(i).isSection()) {
+                    TextView textView = view.findViewById(R.id.tvItemTitle);
+                    String charSequence = (textView).getText().toString();
+                    position = i;
+                    id = historyArrayList.get(i).getId();
+//                    Toast.makeText(HomeScreenActivity.this, "Clicked " + charSequence, Toast.LENGTH_SHORT).show();
 
+//                    Intent mIntent = new Intent(HomeScreenActivity.this, AddVisitActivity.class);
+//                    startActivity(mIntent);
+//                    Toast.makeText(HomeScreenActivity.this, "Clicked " + historyArrayList.get(i).getId(), Toast.LENGTH_SHORT).show();
+                    CustomBottomSheet customBottomSheet = new CustomBottomSheet();
+                    customBottomSheet.show(getSupportFragmentManager(), "CustomBottomSheet");
+                }
             }
         });
     }
 
+    @Override
+    public void onButtonClicked(String text) {
+        if (text.equals("edit")) {
+            startActivity(new Intent(HomeScreenActivity.this, EditHistoryActivity.class));
+        }
+    }
 }

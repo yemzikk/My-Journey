@@ -45,4 +45,5 @@
     <string name="time">Time</string>
     <string name="vehicle_category">Vehicle Category</string>
     <string name="bus">Bus</string>
+    <string name="edit_my_journey">Edit My Journey</string>
 </resources>
