@@ -26,7 +26,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/name"
-            android:textColor="@color/colorPrimary" />
+            android:layout_marginBottom="@dimen/margin_8"
+            android:textColor="@color/grey_700" />
 
         <EditText
             android:id="@+id/editTextName"
@@ -45,7 +46,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/phone"
-            android:textColor="@color/colorPrimary" />
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/grey_700" />
 
         <EditText
             android:id="@+id/editTextPhone"
