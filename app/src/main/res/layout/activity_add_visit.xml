@@ -50,15 +50,16 @@
                 android:layout_marginBottom="@dimen/default_margin_16"
                 android:fontFamily="@font/inter_bold"
                 android:text="@string/starting_point"
-                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/sub_header"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:theme="@style/label" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/label_margin_bottom"
                 android:text="@string/place"
-                android:textColor="@color/colorPrimary" />
+                android:theme="@style/label" />
 
             <EditText
                 android:id="@+id/editTextStartingPointPlace"
@@ -70,7 +71,7 @@
                 android:hint="@string/place_hint"
                 android:inputType="text"
                 android:padding="@dimen/padding_12"
-                android:textColorHint="@color/colorGray" />
+                android:textColorHint="@color/grey_600" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -88,8 +89,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/label_margin_bottom"
                         android:text="@string/date"
-                        android:textColor="@color/colorPrimary" />
+                        android:theme="@style/label" />
 
                     <EditText
                         android:id="@+id/editTextStartingPointDate"
@@ -102,7 +104,7 @@
                         android:hint="@string/date_hint"
                         android:inputType="date"
                         android:padding="@dimen/padding_12"
-                        android:textColorHint="@color/colorGray" />
+                        android:textColorHint="@color/grey_600" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -115,8 +117,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/label_margin_bottom"
                         android:text="@string/time"
-                        android:textColor="@color/colorPrimary" />
+                        android:theme="@style/label" />
 
                     <EditText
                         android:id="@+id/editTextStartingPointTime"
@@ -129,7 +132,7 @@
                         android:hint="@string/time_hint"
                         android:inputType="time"
                         android:padding="@dimen/padding_12"
-                        android:textColorHint="@color/colorGray" />
+                        android:textColorHint="@color/grey_600" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -139,15 +142,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/default_margin_16"
                 android:text="@string/destination"
-                android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/sub_header"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:theme="@style/label" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/label_margin_bottom"
                 android:text="@string/place"
-                android:textColor="@color/colorPrimary" />
+                android:theme="@style/label" />
 
             <EditText
                 android:id="@+id/editTextDestinationPlace"
@@ -159,7 +163,7 @@
                 android:hint="@string/place_hint"
                 android:inputType="text"
                 android:padding="@dimen/padding_12"
-                android:textColorHint="@color/colorGray" />
+                android:textColorHint="@color/grey_600" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
@@ -177,8 +181,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/label_margin_bottom"
                         android:text="@string/date"
-                        android:textColor="@color/colorPrimary" />
+                        android:theme="@style/label" />
 
                     <EditText
                         android:id="@+id/editTextDestinationDate"
@@ -191,7 +196,7 @@
                         android:hint="@string/date_hint"
                         android:inputType="date"
                         android:padding="@dimen/padding_12"
-                        android:textColorHint="@color/colorGray" />
+                        android:textColorHint="@color/grey_600" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.LinearLayoutCompat
@@ -204,8 +209,9 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/label_margin_bottom"
                         android:text="@string/time"
-                        android:textColor="@color/colorPrimary" />
+                        android:theme="@style/label" />
 
                     <EditText
                         android:id="@+id/editTextDestinationTime"
@@ -218,7 +224,7 @@
                         android:hint="@string/time_hint"
                         android:inputType="time"
                         android:padding="@dimen/padding_12"
-                        android:textColorHint="@color/colorGray" />
+                        android:textColorHint="@color/grey_600" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -227,8 +233,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/label_margin_bottom"
                 android:text="@string/purpose"
-                android:textColor="@color/colorPrimary" />
+                android:theme="@style/label" />
 
             <EditText
                 android:id="@+id/editTextPurpose"
@@ -240,13 +247,14 @@
                 android:inputType="text"
                 android:lines="1"
                 android:padding="@dimen/padding_12"
-                android:textColorHint="@color/colorGray" />
+                android:textColorHint="@color/grey_600" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/label_margin_bottom"
                 android:text="@string/vehicle_type"
-                android:textColor="@color/colorPrimary" />
+                android:theme="@style/label" />
 
             <RadioGroup
                 android:id="@+id/radioButtonGroup"
@@ -260,28 +268,31 @@
                     android:id="@+id/radioButtonPrivate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/label_margin_bottom"
                     android:layout_weight="1"
-                    android:buttonTint="@color/colorPrimary"
+                    android:buttonTint="@color/grey_900"
                     android:checked="true"
                     android:text="@string/private_radio"
-                    android:textColor="@color/colorPrimary" />
+                    android:theme="@style/label" />
 
                 <RadioButton
                     android:id="@+id/radioButtonPublic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/label_margin_bottom"
                     android:layout_weight="1"
-                    android:buttonTint="@color/colorPrimary"
+                    android:buttonTint="@color/grey_900"
                     android:text="@string/public_radio"
-                    android:textColor="@color/colorPrimary" />
+                    android:theme="@style/label" />
 
             </RadioGroup>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/label_margin_bottom"
                 android:text="@string/vehicle_category"
-                android:textColor="@color/colorPrimary" />
+                android:theme="@style/label" />
 
             <AutoCompleteTextView
                 android:id="@+id/editTextVehicleCategory"
@@ -293,13 +304,14 @@
                 android:inputType="text"
                 android:lines="1"
                 android:padding="@dimen/padding_12"
-                android:textColorHint="@color/colorGray" />
+                android:textColorHint="@color/grey_600" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/label_margin_bottom"
                 android:text="@string/vehicle_registration_number"
-                android:textColor="@color/colorPrimary" />
+                android:theme="@style/label" />
 
             <EditText
                 android:id="@+id/editTextVehicleNo"
@@ -311,13 +323,14 @@
                 android:inputType="textCapCharacters"
                 android:lines="1"
                 android:padding="@dimen/padding_12"
-                android:textColorHint="@color/colorGray" />
+                android:textColorHint="@color/grey_600" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/label_margin_bottom"
                 android:text="@string/description"
-                android:textColor="@color/colorPrimary" />
+                android:theme="@style/label" />
 
             <EditText
                 android:id="@+id/editTextDesc"
@@ -329,7 +342,7 @@
                 android:hint="@string/notes_here"
                 android:inputType="text"
                 android:padding="@dimen/padding_12"
-                android:textColorHint="@color/colorGray" />
+                android:textColorHint="@color/grey_600" />
 
             <Button
                 android:id="@+id/buttonAddHistory"

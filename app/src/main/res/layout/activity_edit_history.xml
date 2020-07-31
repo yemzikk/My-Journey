@@ -40,7 +40,8 @@
             <!--                    android:layout_marginBottom="@dimen/default_margin_16"-->
             <!--                    android:gravity="center"-->
             <!--                    android:text="@string/add_visit"-->
-            <!--                    android:textColor="@color/colorPrimary"-->
+            <!--                    android:theme="@style/label" 
+                android:layout_marginBottom="@dimen/label_margin_bottom"-->
             <!--                    android:textSize="@dimen/headline"-->
             <!--                    android:textStyle="bold" />-->
 
@@ -50,7 +51,7 @@
                 android:layout_marginBottom="@dimen/default_margin_16"
                 android:fontFamily="@font/inter_bold"
                 android:text="@string/starting_point"
-                android:textColor="@color/colorPrimary"
+                android:theme="@style/label" 
                 android:textSize="@dimen/sub_header"
                 android:textStyle="bold" />
 
@@ -58,7 +59,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/place"
-                android:textColor="@color/colorPrimary" />
+                android:layout_marginBottom="@dimen/label_margin_bottom"
+                android:theme="@style/label" />
 
             <EditText
                 android:id="@+id/editTextStartingPointPlace"
@@ -89,7 +91,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/date"
-                        android:textColor="@color/colorPrimary" />
+                        android:layout_marginBottom="@dimen/label_margin_bottom"
+                        android:theme="@style/label" />
 
                     <EditText
                         android:id="@+id/editTextStartingPointDate"
@@ -116,7 +119,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/time"
-                        android:textColor="@color/colorPrimary" />
+                        android:layout_marginBottom="@dimen/label_margin_bottom"
+                        android:theme="@style/label" />
 
                     <EditText
                         android:id="@+id/editTextStartingPointTime"
@@ -139,7 +143,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/default_margin_16"
                 android:text="@string/destination"
-                android:textColor="@color/colorPrimary"
+                android:theme="@style/label" 
                 android:textSize="@dimen/sub_header"
                 android:textStyle="bold" />
 
@@ -147,7 +151,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/place"
-                android:textColor="@color/colorPrimary" />
+                android:layout_marginBottom="@dimen/label_margin_bottom"
+                android:theme="@style/label" />
 
             <EditText
                 android:id="@+id/editTextDestinationPlace"
@@ -178,7 +183,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/date"
-                        android:textColor="@color/colorPrimary" />
+                        android:layout_marginBottom="@dimen/label_margin_bottom"
+                        android:theme="@style/label" />
 
                     <EditText
                         android:id="@+id/editTextDestinationDate"
@@ -205,7 +211,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/time"
-                        android:textColor="@color/colorPrimary" />
+                        android:layout_marginBottom="@dimen/label_margin_bottom"
+                        android:theme="@style/label" />
 
                     <EditText
                         android:id="@+id/editTextDestinationTime"
@@ -228,7 +235,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/purpose"
-                android:textColor="@color/colorPrimary" />
+                android:layout_marginBottom="@dimen/label_margin_bottom"
+                android:theme="@style/label" />
 
             <EditText
                 android:id="@+id/editTextPurpose"
@@ -246,7 +254,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/vehicle_type"
-                android:textColor="@color/colorPrimary" />
+                android:layout_marginBottom="@dimen/label_margin_bottom"
+                android:theme="@style/label" />
 
             <RadioGroup
                 android:id="@+id/radioButtonGroup"
@@ -261,19 +270,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:buttonTint="@color/colorPrimary"
+                    android:layout_marginBottom="@dimen/label_margin_bottom"
                     android:checked="true"
                     android:text="@string/private_radio"
-                    android:textColor="@color/colorPrimary" />
+                    android:buttonTint="@color/grey_900"
+                    android:theme="@style/label" />
 
                 <RadioButton
                     android:id="@+id/radioButtonPublic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:buttonTint="@color/colorPrimary"
+                    android:layout_marginBottom="@dimen/label_margin_bottom"
                     android:text="@string/public_radio"
-                    android:textColor="@color/colorPrimary" />
+                    android:buttonTint="@color/grey_900"
+                    android:theme="@style/label" />
 
             </RadioGroup>
 
@@ -281,7 +292,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/vehicle_category"
-                android:textColor="@color/colorPrimary" />
+                android:layout_marginBottom="@dimen/label_margin_bottom"
+                android:theme="@style/label" />
 
             <EditText
                 android:id="@+id/editTextVehicleCategory"
@@ -299,7 +311,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/vehicle_registration_number"
-                android:textColor="@color/colorPrimary" />
+                android:layout_marginBottom="@dimen/label_margin_bottom"
+                android:theme="@style/label" />
 
             <EditText
                 android:id="@+id/editTextVehicleNo"
@@ -317,7 +330,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/description"
-                android:textColor="@color/colorPrimary" />
+                android:layout_marginBottom="@dimen/label_margin_bottom"
+                android:theme="@style/label" />
 
             <EditText
                 android:id="@+id/editTextDesc"

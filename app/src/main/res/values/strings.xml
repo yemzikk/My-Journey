@@ -23,11 +23,11 @@
     <string name="description">Description</string>
     <string name="help">Help</string>
     <string name="name">Name</string>
-    <string name="samuel_john">Your Name Here</string>
+    <string name="samuel_john">John Doe</string>
     <string name="phone">Phone</string>
-    <string name="_91_9876543210">+91 9876543210</string>
+    <string name="_91_9876543210">+91 987654321X</string>
     <string name="address">Address</string>
-    <string name="address_here">Address Here</string>
+    <string name="address_here">House Name\nStreet Name\nPost, District\nPin Code</string>
     <string name="tell_us_about_yourself">Tell us about yourself</string>
     <string name="continue_text">CONTINUE</string>
     <string name="title_activity_home_screen">HomeScreenActivity</string>

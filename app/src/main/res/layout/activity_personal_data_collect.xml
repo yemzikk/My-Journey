@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="bottom"
+    android:orientation="vertical"
     tools:context=".PersonalDataCollectActivity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -13,21 +13,21 @@
         android:layout_margin="@dimen/default_margin_16"
         android:gravity="bottom"
         android:orientation="vertical">
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/default_margin_16"
             android:gravity="start"
             android:text="@string/tell_us_about_yourself"
-            android:textColor="@color/colorTextHead"
-            android:textSize="@dimen/headline"
-            android:textStyle="bold" />
+            android:theme="@style/headline" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/label_margin_bottom"
             android:text="@string/name"
-            android:layout_marginBottom="@dimen/margin_8"
-            android:textColor="@color/grey_700" />
+            android:theme="@style/label" />
 
         <EditText
             android:id="@+id/editTextName"
@@ -36,18 +36,18 @@
             android:layout_marginBottom="@dimen/default_margin_16"
             android:background="@drawable/edit_text_background"
             android:hint="@string/samuel_john"
-            android:inputType="text"
             android:imeOptions="actionNext"
+            android:inputType="text"
             android:lines="1"
             android:padding="@dimen/padding_12"
-            android:textColorHint="@color/colorGray" />
+            android:textColorHint="@color/grey_600" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/label_margin_bottom"
             android:text="@string/phone"
-            android:layout_marginBottom="4dp"
-            android:textColor="@color/grey_700" />
+            android:theme="@style/label" />
 
         <EditText
             android:id="@+id/editTextPhone"
@@ -56,43 +56,42 @@
             android:layout_marginBottom="@dimen/default_margin_16"
             android:background="@drawable/edit_text_background"
             android:hint="@string/_91_9876543210"
-            android:inputType="text"
+            android:imeOptions="actionNext"
+            android:inputType="phone"
             android:lines="1"
             android:padding="@dimen/padding_12"
-            android:imeOptions="actionNext"
-            android:textColorHint="@color/colorGray" />
+            android:textColorHint="@color/grey_600" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/label_margin_bottom"
             android:text="@string/address"
-            android:textColor="@color/colorPrimary" />
+            android:theme="@style/label" />
 
         <EditText
             android:id="@+id/editTextAddress"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="120dp"
             android:layout_marginBottom="@dimen/default_margin_16"
             android:background="@drawable/edit_text_background"
             android:gravity="start"
             android:hint="@string/address_here"
             android:imeOptions="actionDone"
-            android:padding="@dimen/padding_12"
             android:inputType="textMultiLine"
-            android:lines="4"
-            android:textColorHint="@color/colorGray" />
+            android:lines="5"
+            android:padding="@dimen/padding_12"
+            android:textColorHint="@color/grey_600" />
 
         <Button
             android:id="@+id/buttonContinue"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="75dp"
+            android:layout_marginTop="24dp"
             android:background="@drawable/button_background"
             android:text="@string/continue_text"
             android:textAllCaps="false"
-            android:textColor="@color/colorWhite"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:theme="@style/button" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
 </LinearLayout>
