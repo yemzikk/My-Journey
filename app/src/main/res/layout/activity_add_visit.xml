@@ -283,7 +283,7 @@
                 android:text="@string/vehicle_category"
                 android:textColor="@color/colorPrimary" />
 
-            <EditText
+            <AutoCompleteTextView
                 android:id="@+id/editTextVehicleCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

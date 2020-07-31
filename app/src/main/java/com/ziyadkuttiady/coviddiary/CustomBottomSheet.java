@@ -83,7 +83,7 @@ public class CustomBottomSheet extends BottomSheetDialogFragment {
             TextView bottom_sheet_desc = v.findViewById(R.id.editTextDesc);
             bottom_sheet_desc.setText(cursor.getString(8));
 
-            //StartingPointPlace
+            //EdiButton
             Button bottom_sheet_edit = v.findViewById(R.id.buttonEdit);
             bottom_sheet_edit.setOnClickListener(new View.OnClickListener() {
                 @Override

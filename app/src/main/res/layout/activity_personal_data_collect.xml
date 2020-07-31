@@ -36,6 +36,7 @@
             android:background="@drawable/edit_text_background"
             android:hint="@string/samuel_john"
             android:inputType="text"
+            android:imeOptions="actionNext"
             android:lines="1"
             android:padding="@dimen/padding_12"
             android:textColorHint="@color/colorGray" />
@@ -56,6 +57,7 @@
             android:inputType="text"
             android:lines="1"
             android:padding="@dimen/padding_12"
+            android:imeOptions="actionNext"
             android:textColorHint="@color/colorGray" />
 
         <TextView
@@ -72,8 +74,10 @@
             android:background="@drawable/edit_text_background"
             android:gravity="start"
             android:hint="@string/address_here"
-            android:inputType="text"
+            android:imeOptions="actionDone"
             android:padding="@dimen/padding_12"
+            android:inputType="textMultiLine"
+            android:lines="4"
             android:textColorHint="@color/colorGray" />
 
         <Button

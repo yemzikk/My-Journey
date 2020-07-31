@@ -4,7 +4,10 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -21,12 +24,13 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.Calendar;
 
 public class AddVisitActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText editTextStartDate, editTextEndDate, editTextStartTime, editTextEndTime, editTextStartPlace, editTextEndPlace, editTextPurpose, editTextDesc, editTextVehicleNumber, editTextVehicleCategory;
+    EditText editTextStartDate, editTextEndDate, editTextStartTime, editTextEndTime, editTextStartPlace, editTextEndPlace, editTextPurpose, editTextDesc, editTextVehicleNumber;
     Button buttonAdd;
     DataBaseHelper myDbHelper;
     LinearLayoutCompat parentLayout;
     RadioButton vehicle_typeRadioButton;
     RadioGroup radioGroup;
+    AutoCompleteTextView editTextVehicleCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,9 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.add_visit);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
 
 
         myDbHelper = new DataBaseHelper(this);
@@ -62,6 +69,10 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
 
         buttonAdd = findViewById(R.id.buttonAddHistory);
 
+        String[] types = new String[]{"Bus", "Car", "Jeep", "Bike", "Cycle", "Walking", "Train", "Aeroplane", "Truck"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, types);
+        editTextVehicleCategory.setAdapter(adapter);
+
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -82,26 +93,38 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
 
                 if (start_place.equals("")) {
                     editTextStartPlace.setError("Enter a valid place here");
+                    editTextStartPlace.requestFocus();
                 } else if (start_date.equals("")) {
                     editTextStartDate.setError("Enter a valid date here");
+                    editTextStartDate.requestFocus();
                 } else if (start_time.equals("")) {
                     editTextStartTime.setError("Enter a valid time here");
+                    editTextStartTime.requestFocus();
                 } else if (end_place.equals("")) {
                     editTextEndPlace.setError("Enter a valid place here");
+                    editTextEndPlace.requestFocus();
                 } else if (end_date.equals("")) {
                     editTextEndDate.setError("Enter a valid date here");
+                    editTextEndDate.requestFocus();
                 } else if (end_time.equals("")) {
                     editTextEndTime.setError("Enter a valid time here");
+                    editTextEndTime.requestFocus();
                 } else if (vehicle_type.equals("")) {
                     vehicle_typeRadioButton.setError("Enter a valid vehicle type here");
+                    vehicle_typeRadioButton.requestFocus();
                 } else if (purpose.equals("")) {
                     editTextPurpose.setError("Enter a valid purpose here");
+                    editTextPurpose.requestFocus();
                 } else if (category_vehicle.equals("")) {
                     editTextVehicleCategory.setError("Enter a valid vehicle category here");
+                    editTextVehicleCategory.requestFocus();
                 } else if (vehicle_number.equals("")) {
                     editTextVehicleNumber.setError("Enter a valid vehicle registration number here");
+                    editTextVehicleNumber.requestFocus();
+                    editTextVehicleNumber.setText("No");
                 } else if (desc.equals("")) {
                     editTextDesc.setError("Enter a valid description here");
+                    editTextDesc.requestFocus();
                 } else {
                     boolean isInserted = myDbHelper.insertData(
                             start_date,
@@ -234,5 +257,14 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
         startActivity(new Intent(AddVisitActivity.this, HomeScreenActivity.class));
         finish();
         super.onBackPressed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

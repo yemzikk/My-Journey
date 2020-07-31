@@ -1,7 +1,5 @@
 package com.ziyadkuttiady.coviddiary;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -9,6 +7,8 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class PersonalDataCollectActivity extends AppCompatActivity {
     public SharedPreferences sharedPreferences;
@@ -24,10 +24,19 @@ public class PersonalDataCollectActivity extends AppCompatActivity {
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(PersonalDataCollectActivity.this);
         editor = sharedPreferences.edit();
+        String name = sharedPreferences.getString("name_of_user", "no");
+        String phone = sharedPreferences.getString("phone_number_of_user", "no");
+        String address = sharedPreferences.getString("address_of_user", "no");
 
         nameEditText = findViewById(R.id.editTextName);
         phoneEditText = findViewById(R.id.editTextPhone);
         addressEditText = findViewById(R.id.editTextAddress);
+
+        if (!name.equals("no")) {
+            nameEditText.setText(name);
+            phoneEditText.setText(phone);
+            addressEditText.setText(address);
+        }
 
         continueButton = findViewById(R.id.buttonContinue);
 
