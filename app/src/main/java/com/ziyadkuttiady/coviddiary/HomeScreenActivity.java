@@ -51,7 +51,7 @@ public class HomeScreenActivity extends AppCompatActivity implements CustomBotto
     final int FILE_SELECT_CODE = 0;
     ListView listView;
     DataBaseHelper myDbHelper;
-    View navi_view;
+    View navigation_view;
     TextView nameTextView, phoneTextView;
     DrawerLayout drawer;
 
@@ -89,10 +89,10 @@ public class HomeScreenActivity extends AppCompatActivity implements CustomBotto
         }
 
         NavigationView navigationView = findViewById(R.id.nav_view);
-        navi_view = navigationView.getHeaderView(0);
+        navigation_view = navigationView.getHeaderView(0);
 
-        nameTextView = navi_view.findViewById(R.id.nameofuser);
-        phoneTextView = navi_view.findViewById(R.id.phoneofuser);
+        nameTextView = navigation_view.findViewById(R.id.nameofuser);
+        phoneTextView = navigation_view.findViewById(R.id.phoneofuser);
 
         nameTextView.setText(name);
         phoneTextView.setText(phone);
@@ -126,7 +126,7 @@ public class HomeScreenActivity extends AppCompatActivity implements CustomBotto
             return;
         }
 
-        @SuppressLint("SimpleDateFormat") String today = new SimpleDateFormat("dd-M-yyyy").format(new Date());
+        @SuppressLint("SimpleDateFormat") String today = new SimpleDateFormat("YYYY-MM-dd").format(new Date());
 
         final CustomHistoryAdapter adapter = new CustomHistoryAdapter(this, historyArrayList);
         listView.setAdapter(adapter);
@@ -140,14 +140,14 @@ public class HomeScreenActivity extends AppCompatActivity implements CustomBotto
         while (cursor.moveToNext()) {
 
             if (lastAdded.equals(cursor.getString(2))) {
-                historyArrayList.add(new CustomHistoryEntryItem(cursor.getString(5) + " -> " + cursor.getString(6), cursor.getString(3) + " - " + cursor.getString(4), cursor.getString(0)));
+                historyArrayList.add(new CustomHistoryEntryItem(cursor.getString(5) + " \u2192 " + cursor.getString(6), cursor.getString(3) + " - " + cursor.getString(4), cursor.getString(0)));
             } else {
                 if (cursor.getString(2).equals(today)) {
                     historyArrayList.add(new CustomHistorySectionItem("Today's Activity", cursor.getString(0)));
-                    historyArrayList.add(new CustomHistoryEntryItem(cursor.getString(5) + " -> " + cursor.getString(6), cursor.getString(3) + " - " + cursor.getString(4), cursor.getString(0)));
+                    historyArrayList.add(new CustomHistoryEntryItem(cursor.getString(5) + " \u2192 " + cursor.getString(6), cursor.getString(3) + " - " + cursor.getString(4), cursor.getString(0)));
                 } else {
                     historyArrayList.add(new CustomHistorySectionItem(cursor.getString(2), cursor.getString(0)));
-                    historyArrayList.add(new CustomHistoryEntryItem(cursor.getString(5) + " -> " + cursor.getString(6), cursor.getString(3) + " - " + cursor.getString(4), cursor.getString(0)));
+                    historyArrayList.add(new CustomHistoryEntryItem(cursor.getString(5) + " \u2192 " + cursor.getString(6), cursor.getString(3) + " - " + cursor.getString(4), cursor.getString(0)));
 
                 }
 

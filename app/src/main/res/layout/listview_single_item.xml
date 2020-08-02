@@ -2,38 +2,41 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
+    android:layout_margin="@dimen/margin_8"
     android:background="@drawable/list_item_background"
-    android:padding="@dimen/default_padding_16"
-    android:layout_margin="@dimen/margin_8">
+    android:orientation="horizontal"
+    android:padding="@dimen/default_padding_16">
+
     <ImageView
+        android:id="@+id/category_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:contentDescription="@string/next"
-        android:src="@drawable/ic_group_33" />
+        android:contentDescription="@string/next" />
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/tvItemTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/default_padding_16"
             android:paddingEnd="@dimen/default_padding_16"
+            android:text="Kozhikkode - Kuttiady"
             android:textColor="@color/colorTextHead"
-            android:textSize="@dimen/sub_header"
-            android:text="Kozhikkode - Kuttiady" />
+            android:textSize="@dimen/sub_header" />
 
         <TextView
             android:id="@+id/tvItemDesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/default_padding_16"
-            android:textSize="@dimen/caption"
-            android:text="04:00 PM - 05:00 PM" />
+            android:text="04:00 PM - 05:00 PM"
+            android:textSize="@dimen/caption" />
     </LinearLayout>
 
     <ImageView

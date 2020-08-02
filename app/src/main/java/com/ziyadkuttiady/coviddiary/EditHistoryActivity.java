@@ -201,8 +201,17 @@ public class EditHistoryActivity extends AppCompatActivity implements View.OnCli
                         @Override
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
+                            String month = String.valueOf(monthOfYear), day = String.valueOf(dayOfMonth);
+                            if (monthOfYear < 10) {
+                                monthOfYear++;
+                                month = "0" + monthOfYear;
+                            }
+                            if (dayOfMonth < 10) {
 
-                            editTextStartDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                                day = "0" + dayOfMonth;
+                            }
+
+                            editTextStartDate.setText(year + "-" + month + "-" + day);
 
                         }
                     }, mYear, mMonth, mDay);
@@ -224,8 +233,16 @@ public class EditHistoryActivity extends AppCompatActivity implements View.OnCli
                         @Override
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
+                            String month = String.valueOf(monthOfYear), day = String.valueOf(dayOfMonth);
+                            if (monthOfYear < 10) {
+                                monthOfYear++;
+                                month = "0" + monthOfYear;
+                            }
+                            if (dayOfMonth < 10) {
+                                day = "0" + dayOfMonth;
+                            }
 
-                            editTextEndDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                            editTextEndDate.setText(year + "-" + month + "-" + day);
 
                         }
                     }, mYear, mMonth, mDay);

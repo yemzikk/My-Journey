@@ -40,4 +40,8 @@ dependencies {
 
     implementation 'com.github.medyo:android-about-page:1.2.4'
 
+    //TODO:Remove Below lines before publish
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.1'
+
+
 }

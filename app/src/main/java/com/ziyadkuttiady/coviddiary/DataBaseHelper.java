@@ -133,7 +133,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public Cursor getAllData() {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + "  ORDER BY end_date DESC;", null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_NAME + "  ORDER BY " + COL_3 + " DESC;", null);
         return cursor;
 
     }

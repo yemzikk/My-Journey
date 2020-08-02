@@ -3,17 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <TextView
         android:id="@+id/tvSectionTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingStart="@dimen/default_padding_16"
-        android:paddingEnd="10dp"
-        android:text="Section"
-        android:paddingTop="@dimen/default_padding_8"
-        android:textSize="@dimen/body_bold"
         android:clickable="false"
-        android:textColor="@color/colorTextHeadLight"
-        android:textStyle="bold" />
+        android:paddingStart="@dimen/default_padding_8"
+        android:paddingTop="@dimen/default_padding_8"
+        android:paddingEnd="10dp"
+        android:text="@string/section"
+        android:theme="@style/caption" />
 
 </LinearLayout>

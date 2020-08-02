@@ -55,14 +55,14 @@
     </style>
 
     <style name="caption">
-        <item name="android:fontFamily">@font/inter_regular</item>
-        <item name="android:textColor">@color/grey_900</item>
+        <item name="android:fontFamily">@font/inter_semi_bold</item>
+        <item name="android:textColor">@color/grey_700</item>
         <item name="android:textSize">12sp</item>
     </style>
 
     <style name="label">
         <item name="android:fontFamily">@font/inter_regular</item>
-        <item name="android:textColor">@color/grey_900</item>
+        <item name="android:textColor">@color/grey_800</item>
         <item name="android:textSize">14sp</item>
     </style>
 

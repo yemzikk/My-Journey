@@ -1,18 +1,21 @@
 package com.ziyadkuttiady.coviddiary;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,6 +25,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Calendar;
+import java.util.Objects;
 
 public class AddVisitActivity extends AppCompatActivity implements View.OnClickListener {
     EditText editTextStartDate, editTextEndDate, editTextStartTime, editTextEndTime, editTextStartPlace, editTextEndPlace, editTextPurpose, editTextDesc, editTextVehicleNumber;
@@ -30,7 +34,7 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
     LinearLayoutCompat parentLayout;
     RadioButton vehicle_typeRadioButton;
     RadioGroup radioGroup;
-    AutoCompleteTextView editTextVehicleCategory;
+    Spinner editTextVehicleCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,9 +44,8 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.add_visit);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
 
 
         myDbHelper = new DataBaseHelper(this);
@@ -69,9 +72,27 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
 
         buttonAdd = findViewById(R.id.buttonAddHistory);
 
-        String[] types = new String[]{"Bus", "Car", "Jeep", "Bike", "Cycle", "Walking", "Train", "Aeroplane", "Truck"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, types);
-        editTextVehicleCategory.setAdapter(adapter);
+//        String[] types = new String[]{"Bus", "Car", "Jeep", "Bike", "Cycle", "Walking", "Train", "Aeroplane", "Truck"};
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, types);
+//        editTextVehicleCategory.setAdapter(adapter);
+        editTextVehicleCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (editTextVehicleCategory.getSelectedItem().toString().equals("Walk")) {
+                    editTextVehicleNumber.setText("No");
+                    editTextVehicleNumber.setEnabled(false);
+                } else {
+                    editTextVehicleNumber.setText("");
+                    editTextVehicleNumber.setEnabled(true);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,7 +107,7 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
                 String end_place = editTextEndPlace.getText().toString();
                 String purpose = editTextPurpose.getText().toString();
                 String desc = editTextDesc.getText().toString();
-                String category_vehicle = editTextVehicleCategory.getText().toString();
+                String category_vehicle = editTextVehicleCategory.getSelectedItem().toString();
                 String vehicle_number = editTextVehicleNumber.getText().toString();
                 String vehicle_type = vehicle_typeRadioButton.getText().toString();
 
@@ -115,13 +136,14 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
                 } else if (purpose.equals("")) {
                     editTextPurpose.setError("Enter a valid purpose here");
                     editTextPurpose.requestFocus();
-                } else if (category_vehicle.equals("")) {
-                    editTextVehicleCategory.setError("Enter a valid vehicle category here");
-                    editTextVehicleCategory.requestFocus();
+//                } else if (category_vehicle.equals("Walk")) {
+//                    editTextVehicleCategory.setError("Enter a valid vehicle category here");
+//                    editTextVehicleCategory.requestFocus();
+//                    editTextVehicleNumber.setText("No");
+//                    editTextVehicleNumber.setEnabled(false);
                 } else if (vehicle_number.equals("")) {
                     editTextVehicleNumber.setError("Enter a valid vehicle registration number here");
                     editTextVehicleNumber.requestFocus();
-                    editTextVehicleNumber.setText("No");
                 } else if (desc.equals("")) {
                     editTextDesc.setError("Enter a valid description here");
                     editTextDesc.requestFocus();
@@ -141,9 +163,25 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
                     );
                     if (isInserted) {
                         Snackbar.make(parentLayout, "Data Inserted", Snackbar.LENGTH_LONG).show();
-                        startActivity(new Intent(AddVisitActivity.this, HomeScreenActivity.class));
-                        finish();
-                        //TODO: Add More or goto main screen
+                        AlertDialog.Builder builder = new AlertDialog.Builder(AddVisitActivity.this);
+                        builder.setTitle("Do you want to add more?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Intent intent = getIntent();
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                finish();
+                                startActivity(intent);
+                            }
+                        }).setCancelable(true).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                startActivity(new Intent(AddVisitActivity.this, HomeScreenActivity.class));
+                                finish();
+                            }
+                        });
+                        AlertDialog alertDialog = builder.create();
+                        alertDialog.show();
+
                     } else {
                         Snackbar.make(parentLayout, "Something Went Wrong", Snackbar.LENGTH_LONG).show();
                     }
@@ -172,11 +210,21 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
             DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme,
                     new DatePickerDialog.OnDateSetListener() {
 
+                        @SuppressLint("SetTextI18n")
                         @Override
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
+                            String month = String.valueOf(monthOfYear), day = String.valueOf(dayOfMonth);
+                            if (monthOfYear < 10) {
+                                monthOfYear++;
+                                month = "0" + monthOfYear;
+                            }
+                            if (dayOfMonth < 10) {
 
-                            editTextStartDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                                day = "0" + dayOfMonth;
+                            }
+
+                            editTextStartDate.setText(year + "-" + month + "-" + day);
 
                         }
                     }, mYear, mMonth, mDay);
@@ -195,11 +243,21 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
             DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme,
                     new DatePickerDialog.OnDateSetListener() {
 
+                        @SuppressLint("SetTextI18n")
                         @Override
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
+                            String month = String.valueOf(monthOfYear), day = String.valueOf(dayOfMonth);
+                            if (monthOfYear < 10) {
+                                monthOfYear++;
+                                month = "0" + monthOfYear;
+                            }
+                            if (dayOfMonth < 10) {
 
-                            editTextEndDate.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+                                day = "0" + dayOfMonth;
+                            }
+
+                            editTextEndDate.setText(year + "-" + month + "-" + day);
 
                         }
                     }, mYear, mMonth, mDay);
@@ -218,6 +276,7 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
             TimePickerDialog timePickerDialogf = new TimePickerDialog(this, R.style.DialogTheme,
                     new TimePickerDialog.OnTimeSetListener() {
 
+                        @SuppressLint("DefaultLocale")
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay,
                                               int minute) {
@@ -239,6 +298,7 @@ public class AddVisitActivity extends AppCompatActivity implements View.OnClickL
             TimePickerDialog timePickerDialogt = new TimePickerDialog(this, R.style.DialogTheme,
                     new TimePickerDialog.OnTimeSetListener() {
 
+                        @SuppressLint("DefaultLocale")
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay,
                                               int minute) {

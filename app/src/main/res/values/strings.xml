@@ -27,7 +27,7 @@
     <string name="phone">Phone</string>
     <string name="_91_9876543210">+91 987654321X</string>
     <string name="address">Address</string>
-    <string name="address_here">House Name\nStreet Name\nPost, District\nPin Code</string>
+    <string name="address_here">House Name\nStreet Name\nPost, City, District\nPin Code</string>
     <string name="tell_us_about_yourself">Tell us about yourself</string>
     <string name="continue_text">CONTINUE</string>
     <string name="title_activity_home_screen">HomeScreenActivity</string>
@@ -58,5 +58,19 @@
     <string name="copy_right" translatable="false">Copyrights © %1$d</string>
     <string name="change_personal_details">Change Personal Details</string>
     <string name="no">No</string>
+    <string name="section">Section</string>
+
+    <string-array name="vehicle_types">
+        <item>Walk</item>
+        <item>Car</item>
+        <item>Bike</item>
+        <item>Cycle</item>
+        <item>Auto Rickshaw</item>
+        <item>Bus</item>
+        <item>Jeep</item>
+        <item>Train</item>
+        <item>Aeroplane</item>
+        <item>Truck</item>
+    </string-array>
 
 </resources>

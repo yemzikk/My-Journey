@@ -32,7 +32,6 @@ public class CustomBottomSheet extends BottomSheetDialogFragment {
 
 
         Cursor cursor = myDbHelper.getData(id);
-        ;
 
         if (cursor.moveToNext()) {
             //StartingPointPlace
