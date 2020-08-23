@@ -1,4 +1,4 @@
-package com.ziyadkuttiady.coviddiary;
+package com.ziyadkuttiady.myjourney;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
-    public final static String DATABASE_NAME = "CovidDiary.db";
-    public final static String TABLE_NAME = "CovidDiary_Table";
+    public final static String DATABASE_NAME = "MyJourney.db";
+    public final static String TABLE_NAME = "MyJourney_Table";
     public final static String COL_1 = "ID";
     public final static String COL_2 = "START_DATE";
     public final static String COL_3 = "END_DATE";

@@ -1,4 +1,4 @@
-package com.ziyadkuttiady.coviddiary;
+package com.ziyadkuttiady.myjourney;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -66,34 +66,34 @@ public class CustomHistoryAdapter extends BaseAdapter {
             if (cursor.moveToNext()) {
                 switch (cursor.getString(10)) {
                     case "Bike":
-                        categoryIcon.setImageResource(R.drawable.ic_motorcycle);
+                        categoryIcon.setImageResource(R.drawable.ic_bike_r);
                         break;
                     case "Bus":
-                        categoryIcon.setImageResource(R.drawable.ic_bus);
+                        categoryIcon.setImageResource(R.drawable.ic_bus_r);
                         break;
                     case "Car":
-                        categoryIcon.setImageResource(R.drawable.ic_car);
+                        categoryIcon.setImageResource(R.drawable.ic_car_r);
                         break;
                     case "Jeep":
-                        categoryIcon.setImageResource(R.drawable.ic_jeep);
+                        categoryIcon.setImageResource(R.drawable.ic_jeep_r);
                         break;
                     case "Cycle":
-                        categoryIcon.setImageResource(R.drawable.ic_cycle);
+                        categoryIcon.setImageResource(R.drawable.ic_cycle_r);
                         break;
                     case "Walk":
-                        categoryIcon.setImageResource(R.drawable.ic_walk);
+                        categoryIcon.setImageResource(R.drawable.ic_walk_r);
                         break;
                     case "Train":
-                        categoryIcon.setImageResource(R.drawable.ic_train);
+                        categoryIcon.setImageResource(R.drawable.ic_train_r);
                         break;
                     case "Aeroplane":
-                        categoryIcon.setImageResource(R.drawable.ic_airplane);
+                        categoryIcon.setImageResource(R.drawable.ic_airplane_r);
                         break;
                     case "Truck":
-                        categoryIcon.setImageResource(R.drawable.ic_truck);
+                        categoryIcon.setImageResource(R.drawable.ic_truck_r);
                         break;
                     case "Auto Rickshaw":
-                        categoryIcon.setImageResource(R.drawable.ic_autorickshaw);
+                        categoryIcon.setImageResource(R.drawable.ic_auto_r);
                         break;
                 }
 

@@ -49,11 +49,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/default_margin_16"
-                android:fontFamily="@font/inter_bold"
                 android:text="@string/starting_point"
-                android:theme="@style/label" 
-                android:textSize="@dimen/sub_header"
-                android:textStyle="bold" />
+                android:theme="@style/sub_header" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -143,9 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/default_margin_16"
                 android:text="@string/destination"
-                android:theme="@style/label" 
-                android:textSize="@dimen/sub_header"
-                android:textStyle="bold" />
+                android:theme="@style/sub_header" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -295,7 +290,7 @@
                 android:layout_marginBottom="@dimen/label_margin_bottom"
                 android:theme="@style/label" />
 
-            <EditText
+            <Spinner
                 android:id="@+id/editTextVehicleCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -303,6 +298,7 @@
                 android:background="@drawable/edit_text_background"
                 android:hint="@string/bus"
                 android:inputType="text"
+                android:entries="@array/vehicle_types"
                 android:lines="1"
                 android:padding="@dimen/padding_12"
                 android:textColorHint="@color/colorGray" />
@@ -350,11 +346,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_background"
-                android:text="@string/add_to_history"
+                android:text="@string/update"
                 android:textAllCaps="false"
-                android:textColor="@color/colorWhite"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:theme="@style/button" />
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.core.widget.NestedScrollView>
 

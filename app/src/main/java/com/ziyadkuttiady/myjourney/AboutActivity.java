@@ -1,10 +1,11 @@
-package com.ziyadkuttiady.coviddiary;
+package com.ziyadkuttiady.myjourney;
 
 import android.annotation.SuppressLint;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,15 +26,15 @@ public class AboutActivity extends AppCompatActivity {
         @SuppressLint("ResourceType") View aboutPage = new AboutPage(this)
                 .isRTL(false)
                 .setImage(R.drawable.logo)
-                .setDescription("About SSF Covid Diary")
-                .addGroup("")
+//                .addItem(new Element().setTitle("About This App"))
+                .setDescription(getString(R.string.descriptionApp))
                 .addGroup("Connect with us")
-                .addEmail("mail@ssfkerala.org")
+                .addEmail("ssfstateit@gmail.com")
                 .addWebsite("http://www.ssfkerala.org/")
                 .addFacebook("https://www.facebook.com/KeralaStateSSF/")
                 .addTwitter("https://twitter.com/SSFKerala")
                 .addYoutube("https://www.youtube.com/channel/UCXX70Oz9Pe6mADWURP7EmQQ")
-                .addPlayStore("https://play.google.com/store/apps/details?id=com.ziyadkuttiady.coviddiary")
+                .addPlayStore("https://play.google.com/store/apps/details?id=com.ziyadkuttiady.myjourney")
                 .addInstagram("https://www.instagram.com/ssfkerala/")
 //                .addGitHub("#")
                 .addItem(new Element().setTitle("Developed by IT CELL SSF Kerala"))
@@ -42,6 +43,8 @@ public class AboutActivity extends AppCompatActivity {
                 .create();
 
         setContentView(aboutPage);
+        TextView description = findViewById(R.id.description);
+        description.setGravity(Gravity.START);
     }
 
 
@@ -61,6 +64,7 @@ public class AboutActivity extends AppCompatActivity {
         });
         return copyRightsElement;
     }
+
 
     void simulateDayNight(int currentSetting) {
         final int DAY = 0;

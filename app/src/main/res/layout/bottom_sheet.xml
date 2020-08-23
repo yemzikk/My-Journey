@@ -37,17 +37,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/default_margin_16"
-                android:fontFamily="@font/inter_bold"
                 android:text="@string/starting_point"
-                android:theme="@style/label" 
-                android:textSize="@dimen/sub_header"
-                android:textStyle="bold" />
+                android:theme="@style/sub_header" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/place"
                 android:layout_marginBottom="@dimen/label_margin_bottom"
+                android:text="@string/place"
                 android:theme="@style/label" />
 
             <EditText
@@ -80,8 +77,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/date"
                         android:layout_marginBottom="@dimen/label_margin_bottom"
+                        android:text="@string/date"
                         android:theme="@style/label" />
 
                     <EditText
@@ -108,8 +105,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/time"
                         android:layout_marginBottom="@dimen/label_margin_bottom"
+                        android:text="@string/time"
                         android:theme="@style/label" />
 
                     <EditText
@@ -133,15 +130,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/default_margin_16"
                 android:text="@string/destination"
-                android:theme="@style/label" 
-                android:textSize="@dimen/sub_header"
-                android:textStyle="bold" />
+                android:theme="@style/sub_header" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/place"
                 android:layout_marginBottom="@dimen/label_margin_bottom"
+                android:text="@string/place"
                 android:theme="@style/label" />
 
             <EditText
@@ -174,8 +169,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/date"
                         android:layout_marginBottom="@dimen/label_margin_bottom"
+                        android:text="@string/date"
                         android:theme="@style/label" />
 
                     <EditText
@@ -202,8 +197,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/time"
                         android:layout_marginBottom="@dimen/label_margin_bottom"
+                        android:text="@string/time"
                         android:theme="@style/label" />
 
                     <EditText
@@ -226,8 +221,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/purpose"
                 android:layout_marginBottom="@dimen/label_margin_bottom"
+                android:text="@string/purpose"
                 android:theme="@style/label" />
 
             <EditText
@@ -247,8 +242,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/vehicle_type"
                 android:layout_marginBottom="@dimen/label_margin_bottom"
+                android:text="@string/vehicle_type"
                 android:theme="@style/label" />
 
             <RadioGroup
@@ -265,25 +260,25 @@
                     android:id="@+id/radioButtonPrivate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginBottom="@dimen/label_margin_bottom"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/grey_900"
                     android:checked="true"
                     android:clickable="false"
                     android:focusable="false"
                     android:text="@string/private_radio"
-                    android:buttonTint="@color/grey_900"
                     android:theme="@style/label" />
 
                 <RadioButton
                     android:id="@+id/radioButtonPublic"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:layout_marginBottom="@dimen/label_margin_bottom"
+                    android:layout_weight="1"
+                    android:buttonTint="@color/grey_900"
                     android:clickable="false"
                     android:focusable="false"
                     android:text="@string/public_radio"
-                    android:buttonTint="@color/grey_900"
                     android:theme="@style/label" />
 
             </RadioGroup>
@@ -291,8 +286,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/vehicle_category"
                 android:layout_marginBottom="@dimen/label_margin_bottom"
+                android:text="@string/vehicle_category"
                 android:theme="@style/label" />
 
             <EditText
@@ -312,8 +307,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/vehicle_registration_number"
                 android:layout_marginBottom="@dimen/label_margin_bottom"
+                android:text="@string/vehicle_registration_number"
                 android:theme="@style/label" />
 
             <EditText
@@ -333,8 +328,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/description"
                 android:layout_marginBottom="@dimen/label_margin_bottom"
+                android:text="@string/description"
                 android:theme="@style/label" />
 
             <EditText
@@ -351,16 +346,35 @@
                 android:padding="@dimen/padding_12"
                 android:textColorHint="@color/colorGray" />
 
-            <Button
-                android:id="@+id/buttonEdit"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/button_background"
-                android:text="@string/edit_my_journey"
-                android:textAllCaps="false"
-                android:textColor="@color/colorWhite"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/buttonDelete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/default_padding_8"
+                    android:background="@drawable/button_background_delete"
+                    android:text="@string/delete"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorDanger"
+                    android:theme="@style/button" />
+
+                <Button
+                    android:id="@+id/buttonEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_padding_8"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_background"
+                    android:text="@string/edit_my_journey"
+                    android:textAllCaps="false"
+                    android:theme="@style/button" />
+
+            </LinearLayout>
+
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.core.widget.NestedScrollView>
 

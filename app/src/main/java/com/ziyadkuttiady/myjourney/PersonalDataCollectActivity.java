@@ -1,4 +1,4 @@
-package com.ziyadkuttiady.coviddiary;
+package com.ziyadkuttiady.myjourney;
 
 import android.content.Intent;
 import android.content.SharedPreferences;

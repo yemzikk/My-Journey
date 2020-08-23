@@ -1,4 +1,4 @@
-package com.ziyadkuttiady.coviddiary;
+package com.ziyadkuttiady.myjourney;
 
 public class CustomHistoryEntryItem implements ItemHistory {
     public final String title, time, id;

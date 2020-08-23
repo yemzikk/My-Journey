@@ -1,4 +1,4 @@
-package com.ziyadkuttiady.coviddiary;
+package com.ziyadkuttiady.myjourney;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -30,7 +30,7 @@ public class SplashScreen extends AppCompatActivity {
                 if (name.equals("no") &&
                         phone.equals("no") &&
                         address.equals("no") ) {
-                    startActivity(new Intent(SplashScreen.this, PersonalDataCollectActivity.class));
+                    startActivity(new Intent(SplashScreen.this, OnBoardingActivity.class));
                     finish();
                 } else {
                     startActivity(new Intent(SplashScreen.this, HomeScreenActivity.class));

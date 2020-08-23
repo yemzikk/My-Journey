@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Covid Diary</string>
+    <string name="app_name">My Journey</string>
     <string name="date">Date</string>
     <string name="date_hint">DD/MM/YYYY</string>
     <string name="starting_time">Starting Time</string>
@@ -54,11 +54,14 @@
     <string name="share">Share</string>
     <string name="rate">Rate</string>
     <string name="about">About</string>
-    <string name="sharelink">https://play.google.com/store/apps/details?id=com.ziyadkuttiady.coviddiary</string>
+    <string name="sharelink">https://play.google.com/store/apps/details?id=com.ziyadkuttiady.myjourney</string>
     <string name="copy_right" translatable="false">Copyrights © %1$d</string>
+    <string name="descriptionApp" translatable="false">About this app\n\nMy Journey app is an easy way to record \'s travel history.\n\nMy Journey is a mobile application developed by IT CELL, SSF KERALA to record people\'s journey details to support the health services in our collective battle against pandemic. The app is very helpful to list the travel history of oneself and to recognize the social interactions and reduces the chance of dissemination of the decease.</string>
     <string name="change_personal_details">Change Personal Details</string>
     <string name="no">No</string>
     <string name="section">Section</string>
+    <string name="delete">Delete</string>
+    <string name="no_data_available">\n \n No Data available Use \'+\' Button given below to add your History</string>
 
     <string-array name="vehicle_types">
         <item>Walk</item>
@@ -72,5 +75,18 @@
         <item>Aeroplane</item>
         <item>Truck</item>
     </string-array>
+
+
+    <string name="ob_header1">ADD YOUR JOURNEY</string>
+    <string name="ob_header2">FILL YOUR JOURNEY DETAILS</string>
+    <string name="ob_header3">CLICK ADD TO HISTORY BUTTON</string>
+
+    <string name="ob_get_started">GET STARTED</string>
+
+    <string name="ob_desc1">To Add Your Journey History into My Journey Click \'+\' Button given in Home Screen</string>
+    <string name="ob_desc2">Fill the opened form with your journey details correctly</string>
+    <string name="ob_desc3">After Filling Your Journey Details Click \'Add to History\' Button to add your Journey to My Journey</string>
+    <string name="how_to_use_my_journey">How to Use My Journey</string>
+    <string name="update">Update</string>
 
 </resources>

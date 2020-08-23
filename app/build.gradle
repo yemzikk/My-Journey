@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.1"
 
     defaultConfig {
-        applicationId "com.ziyadkuttiady.coviddiary"
+        applicationId "com.ziyadkuttiady.myjourney"
         minSdkVersion 22
         targetSdkVersion 29
         versionCode 1

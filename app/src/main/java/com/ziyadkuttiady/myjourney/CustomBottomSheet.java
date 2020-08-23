@@ -1,4 +1,4 @@
-package com.ziyadkuttiady.coviddiary;
+package com.ziyadkuttiady.myjourney;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-import static com.ziyadkuttiady.coviddiary.HomeScreenActivity.id;
+import static com.ziyadkuttiady.myjourney.HomeScreenActivity.id;
 
 
 public class CustomBottomSheet extends BottomSheetDialogFragment {
@@ -89,6 +89,14 @@ public class CustomBottomSheet extends BottomSheetDialogFragment {
                 public void onClick(View view) {
                     bottomSheetListener.onButtonClicked("edit");
                     dismiss();
+                }
+            });
+
+            Button bottom_sheet_delete = v.findViewById(R.id.buttonDelete);
+            bottom_sheet_delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    bottomSheetListener.onButtonClicked("delete");
                 }
             });
         }

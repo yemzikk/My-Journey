@@ -1,8 +1,9 @@
-package com.ziyadkuttiady.coviddiary;
+package com.ziyadkuttiady.myjourney;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
@@ -29,6 +31,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,10 +39,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 import jxl.Workbook;
 import jxl.WorkbookSettings;
 import jxl.write.Label;
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;
@@ -48,11 +54,10 @@ public class HomeScreenActivity extends AppCompatActivity implements CustomBotto
     public static ArrayList<ItemHistory> historyArrayList = new ArrayList<>();
     public static int position;
     public static String id;
-    final int FILE_SELECT_CODE = 0;
     ListView listView;
     DataBaseHelper myDbHelper;
     View navigation_view;
-    TextView nameTextView, phoneTextView;
+    TextView nameTextView, phoneTextView, noValueDisplay;
     DrawerLayout drawer;
 
     @Override
@@ -93,6 +98,7 @@ public class HomeScreenActivity extends AppCompatActivity implements CustomBotto
 
         nameTextView = navigation_view.findViewById(R.id.nameofuser);
         phoneTextView = navigation_view.findViewById(R.id.phoneofuser);
+        noValueDisplay = findViewById(R.id.no_value);
 
         nameTextView.setText(name);
         phoneTextView.setText(phone);
@@ -123,7 +129,10 @@ public class HomeScreenActivity extends AppCompatActivity implements CustomBotto
 
         //small test
         if (cursor.getCount() == 0) {
+            noValueDisplay.setVisibility(View.VISIBLE);
             return;
+        } else {
+            noValueDisplay.setVisibility(View.GONE);
         }
 
         @SuppressLint("SimpleDateFormat") String today = new SimpleDateFormat("YYYY-MM-dd").format(new Date());
@@ -190,6 +199,29 @@ public class HomeScreenActivity extends AppCompatActivity implements CustomBotto
         if (text.equals("edit")) {
             startActivity(new Intent(HomeScreenActivity.this, EditHistoryActivity.class));
         }
+        if (text.equals("delete")) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(HomeScreenActivity.this);
+            builder.setTitle("Do you want to delete this Record?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    myDbHelper = new DataBaseHelper(HomeScreenActivity.this);
+                    myDbHelper.deleteData(id);
+                    Intent intent = new Intent(HomeScreenActivity.this, HomeScreenActivity.class);
+                    overridePendingTransition(0, 0);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    startActivity(intent);
+                }
+            }).setCancelable(true).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+            AlertDialog alertDialog = builder.create();
+            alertDialog.show();
+
+//            startActivity(new Intent(HomeScreenActivity.this, EditHistoryActivity.class));
+        }
     }
 
     @Override
@@ -203,6 +235,7 @@ public class HomeScreenActivity extends AppCompatActivity implements CustomBotto
                 shareThisApp();
                 break;
             case R.id.nav_help:
+                startActivity(new Intent(HomeScreenActivity.this, OnBoardingActivity.class));
                 break;
             case R.id.nav_settings:
                 startActivity(new Intent(HomeScreenActivity.this, SettingsActivity.class));
@@ -215,7 +248,7 @@ public class HomeScreenActivity extends AppCompatActivity implements CustomBotto
                 break;
 
         }
-        return true;
+        return false;
     }
 
     @Override
@@ -233,9 +266,9 @@ public class HomeScreenActivity extends AppCompatActivity implements CustomBotto
 
     public void exportToExcelSheet() {
         Cursor cursor = myDbHelper.getAllData();
-
-        File sd = new File(Environment.getExternalStorageDirectory() + "/Covid Diary");
-        String csvFile = "Covid Diary.xls";
+        @SuppressLint("SimpleDateFormat") String today = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss a").format(new Date());
+        File sd = new File(Environment.getExternalStorageDirectory() + "/My Journey");
+        String csvFile = "My Journey Export On " + today + ".xls";
 
         File directory = new File(sd.getAbsolutePath());
         //create directory if not exist
@@ -254,65 +287,87 @@ public class HomeScreenActivity extends AppCompatActivity implements CustomBotto
             e.printStackTrace();
         }
         //Excel sheet name. 0 represents first sheet
-        WritableSheet sheet = workbook.createSheet("My Travel History", 0);
+        WritableSheet sheet = Objects.requireNonNull(workbook).createSheet("My Travel History", 0);
         // column and row
+
+        WritableFont cellFont = new WritableFont(WritableFont.TIMES, 10);
         try {
-            sheet.addCell(new Label(0, 0, "S.No"));
+            cellFont.setBoldStyle(WritableFont.BOLD);
+        } catch (WriteException e) {
+            e.printStackTrace();
+        }
+        //Customize this to change font color
+//        try {
+//            cellFont.setColour(Colour.BLUE);
+//        } catch (WriteException e) {
+//            e.printStackTrace();
+//        }
+//
+        WritableCellFormat cellFormat = new WritableCellFormat(cellFont);
+        //Customize this to change background color
+
+//        try {
+//            cellFormat.setBackground(Colour.ORANGE);
+//        } catch (WriteException e) {
+//            e.printStackTrace();
+//        }
+        try {
+            sheet.addCell(new Label(0, 0, "S.No", cellFormat));
         } catch (WriteException e) {
             e.printStackTrace();
         }
         try {
-            sheet.addCell(new Label(1, 0, "From Place"));
+            sheet.addCell(new Label(1, 0, "From Place", cellFormat));
         } catch (WriteException e) {
             e.printStackTrace();
         }
         try {
-            sheet.addCell(new Label(2, 0, "From Date"));
+            sheet.addCell(new Label(2, 0, "From Date", cellFormat));
         } catch (WriteException e) {
             e.printStackTrace();
         }
         try {
-            sheet.addCell(new Label(3, 0, "From Time"));
+            sheet.addCell(new Label(3, 0, "From Time", cellFormat));
         } catch (WriteException e) {
             e.printStackTrace();
         }
         try {
-            sheet.addCell(new Label(4, 0, "To Place"));
+            sheet.addCell(new Label(4, 0, "To Place", cellFormat));
         } catch (WriteException e) {
             e.printStackTrace();
         }
         try {
-            sheet.addCell(new Label(5, 0, "To Date"));
+            sheet.addCell(new Label(5, 0, "To Date", cellFormat));
         } catch (WriteException e) {
             e.printStackTrace();
         }
         try {
-            sheet.addCell(new Label(6, 0, "To Time"));
+            sheet.addCell(new Label(6, 0, "To Time", cellFormat));
         } catch (WriteException e) {
             e.printStackTrace();
         }
         try {
-            sheet.addCell(new Label(7, 0, "Purpose"));
+            sheet.addCell(new Label(7, 0, "Purpose", cellFormat));
         } catch (WriteException e) {
             e.printStackTrace();
         }
         try {
-            sheet.addCell(new Label(8, 0, "Vehicle Type"));
+            sheet.addCell(new Label(8, 0, "Vehicle Type", cellFormat));
         } catch (WriteException e) {
             e.printStackTrace();
         }
         try {
-            sheet.addCell(new Label(9, 0, "Vehicle Category"));
+            sheet.addCell(new Label(9, 0, "Vehicle Category", cellFormat));
         } catch (WriteException e) {
             e.printStackTrace();
         }
         try {
-            sheet.addCell(new Label(10, 0, "Vehicle Registration Number"));
+            sheet.addCell(new Label(10, 0, "Vehicle Registration Number", cellFormat));
         } catch (WriteException e) {
             e.printStackTrace();
         }
         try {
-            sheet.addCell(new Label(11, 0, "Description"));
+            sheet.addCell(new Label(11, 0, "Description", cellFormat));
         } catch (WriteException e) {
             e.printStackTrace();
         }
@@ -436,6 +491,20 @@ public class HomeScreenActivity extends AppCompatActivity implements CustomBotto
             } catch (WriteException e) {
                 e.printStackTrace();
             }
+            position += 5;
+            try {
+                sheet.addCell(new Label(0, position, "This File is Generated By My Journey App on " + today));
+            } catch (WriteException e) {
+                e.printStackTrace();
+            }
+            position++;
+            try {
+                sheet.mergeCells(0, position, 10, position);
+                sheet.addCell(new Label(0, position, "My Journey Developed by IT Cell, SSF Kerala", cellFormat));
+            } catch (WriteException e) {
+                e.printStackTrace();
+            }
+
 
         }
 
@@ -451,10 +520,11 @@ public class HomeScreenActivity extends AppCompatActivity implements CustomBotto
         } catch (IOException | WriteException e) {
             e.printStackTrace();
         }
-        Toast.makeText(getApplication(),
-                "Data Exported in a Excel Sheet" + directory, Toast.LENGTH_LONG).show();
+        Snackbar.make(drawer, "Data Exported in a Excel Sheet" + directory, Snackbar.LENGTH_LONG).show();
+//        Toast.makeText(getApplication(),
+//                "Data Exported in a Excel Sheet" + directory, Toast.LENGTH_LONG).show();
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-        Uri xlsFileUri = Uri.parse(directory + "/Covid Diary.xls");
+        Uri xlsFileUri = Uri.parse(directory + "/" + csvFile);
         sharingIntent.setType("*/*");
         sharingIntent.putExtra(Intent.EXTRA_STREAM, xlsFileUri);
         startActivity(Intent.createChooser(sharingIntent, "Share using"));
@@ -482,7 +552,7 @@ public class HomeScreenActivity extends AppCompatActivity implements CustomBotto
 
         Intent share = new Intent(android.content.Intent.ACTION_SEND);
         share.setType("text/plain");
-        share.putExtra(android.content.Intent.EXTRA_SUBJECT, "Covid Diary (Open it in Google Play Store to Download the Application)");
+        share.putExtra(android.content.Intent.EXTRA_SUBJECT, "My Journey (Open it in Google Play Store to Download the Application)");
 
         share.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
         startActivity(Intent.createChooser(share, "Share via"));

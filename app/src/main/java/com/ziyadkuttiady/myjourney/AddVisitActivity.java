@@ -1,16 +1,19 @@
-package com.ziyadkuttiady.coviddiary;
+package com.ziyadkuttiady.myjourney;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,24 +23,27 @@ import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.util.Calendar;
+import java.util.Objects;
 
-import static com.ziyadkuttiady.coviddiary.HomeScreenActivity.id;
-
-public class EditHistoryActivity extends AppCompatActivity implements View.OnClickListener {
-    EditText editTextStartDate, editTextEndDate, editTextStartTime, editTextEndTime, editTextStartPlace, editTextEndPlace, editTextPurpose, editTextDesc, editTextVehicleNumber, editTextVehicleCategory;
+public class AddVisitActivity extends AppCompatActivity implements View.OnClickListener {
+    EditText editTextStartDate, editTextEndDate, editTextStartTime, editTextEndTime, editTextStartPlace, editTextEndPlace, editTextPurpose, editTextDesc, editTextVehicleNumber;
     Button buttonAdd;
     DataBaseHelper myDbHelper;
     LinearLayoutCompat parentLayout;
     RadioButton vehicle_typeRadioButton;
     RadioGroup radioGroup;
+    Spinner editTextVehicleCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_history);
+        setContentView(R.layout.activity_add_visit);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setTitle(R.string.add_visit);
         setSupportActionBar(toolbar);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
         myDbHelper = new DataBaseHelper(this);
@@ -55,60 +61,36 @@ public class EditHistoryActivity extends AppCompatActivity implements View.OnCli
 
         parentLayout = findViewById(R.id.parent);
 
-        editTextStartDate.setOnClickListener(EditHistoryActivity.this);
-        editTextEndDate.setOnClickListener(EditHistoryActivity.this);
-        editTextStartTime.setOnClickListener(EditHistoryActivity.this);
-        editTextEndTime.setOnClickListener(EditHistoryActivity.this);
+        editTextStartDate.setOnClickListener(AddVisitActivity.this);
+        editTextEndDate.setOnClickListener(AddVisitActivity.this);
+        editTextStartTime.setOnClickListener(AddVisitActivity.this);
+        editTextEndTime.setOnClickListener(AddVisitActivity.this);
 
         radioGroup = findViewById(R.id.radioButtonGroup);
 
         buttonAdd = findViewById(R.id.buttonAddHistory);
 
-        myDbHelper = new DataBaseHelper(this);
-
-
-        Cursor cursor = myDbHelper.getData(id);
-        ;
-
-        if (cursor.moveToNext()) {
-            //StartingPointPlace
-            editTextStartPlace.setText(cursor.getString(5));
-
-            //editTextStartingPointDate
-            editTextStartDate.setText(cursor.getString(1));
-
-            //StartingPointTime
-            editTextStartTime.setText(cursor.getString(3));
-
-            //DestinationPlace
-            editTextEndPlace.setText(cursor.getString(6));
-
-            //DestinationDate
-            editTextEndDate.setText(cursor.getString(2));
-
-            //DestinationTime
-            editTextEndTime.setText(cursor.getString(4));
-
-            //Purpose
-            editTextPurpose.setText(cursor.getString(7));
-
-            //VehicleType
-            RadioButton public_radio = findViewById(R.id.radioButtonPublic);
-            if (cursor.getString(9).equals("Public")) {
-                public_radio.setChecked(true);
-
+//        String[] types = new String[]{"Bus", "Car", "Jeep", "Bike", "Cycle", "Walking", "Train", "Aeroplane", "Truck"};
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, types);
+//        editTextVehicleCategory.setAdapter(adapter);
+        editTextVehicleCategory.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (editTextVehicleCategory.getSelectedItem().toString().equals("Walk")) {
+                    editTextVehicleNumber.setText("No");
+                    editTextVehicleNumber.setEnabled(false);
+                } else {
+                    editTextVehicleNumber.setText("");
+                    editTextVehicleNumber.setEnabled(true);
+                }
             }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
 
-            //VehicleCategory
-            editTextVehicleCategory.setText(cursor.getString(10));
-
-            //VehicleNo
-            editTextVehicleNumber.setText(cursor.getString(11));
-
-            //StartingPointPlace
-            editTextDesc.setText(cursor.getString(8));
-        }
+            }
+        });
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,36 +105,48 @@ public class EditHistoryActivity extends AppCompatActivity implements View.OnCli
                 String end_place = editTextEndPlace.getText().toString();
                 String purpose = editTextPurpose.getText().toString();
                 String desc = editTextDesc.getText().toString();
-                String category_vehicle = editTextVehicleCategory.getText().toString();
+                String category_vehicle = editTextVehicleCategory.getSelectedItem().toString();
                 String vehicle_number = editTextVehicleNumber.getText().toString();
                 String vehicle_type = vehicle_typeRadioButton.getText().toString();
 
 
                 if (start_place.equals("")) {
                     editTextStartPlace.setError("Enter a valid place here");
+                    editTextStartPlace.requestFocus();
                 } else if (start_date.equals("")) {
                     editTextStartDate.setError("Enter a valid date here");
+                    editTextStartDate.requestFocus();
                 } else if (start_time.equals("")) {
                     editTextStartTime.setError("Enter a valid time here");
+                    editTextStartTime.requestFocus();
                 } else if (end_place.equals("")) {
                     editTextEndPlace.setError("Enter a valid place here");
+                    editTextEndPlace.requestFocus();
                 } else if (end_date.equals("")) {
                     editTextEndDate.setError("Enter a valid date here");
+                    editTextEndDate.requestFocus();
                 } else if (end_time.equals("")) {
                     editTextEndTime.setError("Enter a valid time here");
+                    editTextEndTime.requestFocus();
                 } else if (vehicle_type.equals("")) {
                     vehicle_typeRadioButton.setError("Enter a valid vehicle type here");
+                    vehicle_typeRadioButton.requestFocus();
                 } else if (purpose.equals("")) {
                     editTextPurpose.setError("Enter a valid purpose here");
-                } else if (category_vehicle.equals("")) {
-                    editTextVehicleCategory.setError("Enter a valid vehicle category here");
+                    editTextPurpose.requestFocus();
+//                } else if (category_vehicle.equals("Walk")) {
+//                    editTextVehicleCategory.setError("Enter a valid vehicle category here");
+//                    editTextVehicleCategory.requestFocus();
+//                    editTextVehicleNumber.setText("No");
+//                    editTextVehicleNumber.setEnabled(false);
                 } else if (vehicle_number.equals("")) {
                     editTextVehicleNumber.setError("Enter a valid vehicle registration number here");
+                    editTextVehicleNumber.requestFocus();
                 } else if (desc.equals("")) {
                     editTextDesc.setError("Enter a valid description here");
+                    editTextDesc.requestFocus();
                 } else {
-                    boolean updateData = myDbHelper.updateData(
-                            id,
+                    boolean isInserted = myDbHelper.insertData(
                             start_date,
                             end_date,
                             start_time,
@@ -165,11 +159,30 @@ public class EditHistoryActivity extends AppCompatActivity implements View.OnCli
                             category_vehicle,
                             vehicle_number
                     );
-                    if (updateData) {
-                        Snackbar.make(parentLayout, "Data Updated", Snackbar.LENGTH_LONG).show();
-                        startActivity(new Intent(EditHistoryActivity.this, HomeScreenActivity.class));
+                    if (isInserted) {
+                        Snackbar.make(parentLayout, "Data Inserted", Snackbar.LENGTH_LONG).show();
+//                        AlertDialog.Builder builder = new AlertDialog.Builder(AddVisitActivity.this);
+//                        builder.setTitle("Do you want to add more?").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+//                                Intent intent = getIntent();
+//                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+//                                finish();
+//                                startActivity(intent);
+//                            }
+//                        }).setCancelable(true).setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(AddVisitActivity.this, HomeScreenActivity.class);
+                        overridePendingTransition(0, 0);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(intent);
                         finish();
-                        //TODO: Add More or goto main screen
+//                            }
+//                        });
+//                        AlertDialog alertDialog = builder.create();
+//                        alertDialog.show();
+
                     } else {
                         Snackbar.make(parentLayout, "Something Went Wrong", Snackbar.LENGTH_LONG).show();
                     }
@@ -198,6 +211,7 @@ public class EditHistoryActivity extends AppCompatActivity implements View.OnCli
             DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme,
                     new DatePickerDialog.OnDateSetListener() {
 
+                        @SuppressLint("SetTextI18n")
                         @Override
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
@@ -230,6 +244,7 @@ public class EditHistoryActivity extends AppCompatActivity implements View.OnCli
             DatePickerDialog datePickerDialog = new DatePickerDialog(this, R.style.DialogTheme,
                     new DatePickerDialog.OnDateSetListener() {
 
+                        @SuppressLint("SetTextI18n")
                         @Override
                         public void onDateSet(DatePicker view, int year,
                                               int monthOfYear, int dayOfMonth) {
@@ -239,6 +254,7 @@ public class EditHistoryActivity extends AppCompatActivity implements View.OnCli
                                 month = "0" + monthOfYear;
                             }
                             if (dayOfMonth < 10) {
+
                                 day = "0" + dayOfMonth;
                             }
 
@@ -261,6 +277,7 @@ public class EditHistoryActivity extends AppCompatActivity implements View.OnCli
             TimePickerDialog timePickerDialogf = new TimePickerDialog(this, R.style.DialogTheme,
                     new TimePickerDialog.OnTimeSetListener() {
 
+                        @SuppressLint("DefaultLocale")
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay,
                                               int minute) {
@@ -282,6 +299,7 @@ public class EditHistoryActivity extends AppCompatActivity implements View.OnCli
             TimePickerDialog timePickerDialogt = new TimePickerDialog(this, R.style.DialogTheme,
                     new TimePickerDialog.OnTimeSetListener() {
 
+                        @SuppressLint("DefaultLocale")
                         @Override
                         public void onTimeSet(TimePicker view, int hourOfDay,
                                               int minute) {
@@ -297,13 +315,20 @@ public class EditHistoryActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(EditHistoryActivity.this, HomeScreenActivity.class));
+        Intent intent = new Intent(AddVisitActivity.this, HomeScreenActivity.class);
+        overridePendingTransition(0, 0);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
         finish();
         super.onBackPressed();
     }
 
     @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -38,12 +38,12 @@
 
     <style name="title">
         <item name="android:fontFamily">@font/inter_regular</item>
-        <item name="android:textColor">@color/grey_900</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/grey_700</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="sub_header">
-        <item name="android:fontFamily">@font/inter_regular</item>
+        <item name="android:fontFamily">@font/inter_medium</item>
         <item name="android:textColor">@color/grey_900</item>
         <item name="android:textSize">16sp</item>
     </style>
@@ -70,6 +70,12 @@
         <item name="android:fontFamily">@font/inter_semi_bold</item>
         <item name="android:textColor">@color/colorWhite</item>
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="titleOnBoarding">
+        <item name="android:fontFamily">@font/inter_bold</item>
+        <item name="android:textColor">@color/grey_800</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
 

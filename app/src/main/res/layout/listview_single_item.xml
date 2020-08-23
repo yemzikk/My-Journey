@@ -27,8 +27,7 @@
             android:paddingStart="@dimen/default_padding_16"
             android:paddingEnd="@dimen/default_padding_16"
             android:text="Kozhikkode - Kuttiady"
-            android:textColor="@color/colorTextHead"
-            android:textSize="@dimen/sub_header" />
+            android:theme="@style/sub_header" />
 
         <TextView
             android:id="@+id/tvItemDesc"
@@ -36,7 +35,7 @@
             android:layout_height="wrap_content"
             android:paddingStart="@dimen/default_padding_16"
             android:text="04:00 PM - 05:00 PM"
-            android:textSize="@dimen/caption" />
+            android:theme="@style/label" />
     </LinearLayout>
 
     <ImageView
